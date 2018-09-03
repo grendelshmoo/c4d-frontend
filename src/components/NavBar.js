@@ -1,12 +1,12 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
-const NavBar = () => {
+const NavBar = ({ isLoggedIn, logout}) => {
   return (<nav className="navbar navbar-expand-lg navbar-dark bg-dark">
     <a className="navbar-brand" href="">
       <img id="c4dlogo" alt="C4D" src="./images/c4d_logo.png"></img>
     </a>
-
-    {/* <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+    <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
       <span className="navbar-toggler-icon"></span>
     </button>
 
@@ -30,11 +30,11 @@ const NavBar = () => {
           <div className="dropdown-menu dropdown-menu-right bg-dark m-2" aria-labelledby="dropdownMenuLink">
             <a className="dropdown-item bg-dark" href="#">Preferences...</a>
             <div className="dropdown-divider"></div>
-            <a className="dropdown-item bg-dark" href="#">Logout</a>
+            <a onClick={ logout } className="dropdown-item bg-dark" href="#">Logout</a>
           </div>
         </div>
       </span>
-    </div> */}
+    </div>
 
   </nav>)
 }
