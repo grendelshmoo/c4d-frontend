@@ -16,20 +16,23 @@ const login = async (email, password) => {
 
 const verify = async () => {
   const token = localStorage.getItem(TOKEN_NAME)
-  if (!token) return false
-  try {
-    const response = await axios(`${BASE_URL}/api/users/login`, {
-      method: 'GET',
-      headers: {
-        Authorization: `Bearer ${token}`
-      }
-    })
+  if (!token) {return false} else {return true}
 
-    return response.data
-  } catch (e) {
-    console.error(e)
-    return false
-  }
+  //FIX THIS PLEASE BEFORE RELEASE
+
+  // try {
+  //   const response = await axios(`${BASE_URL}/api/users/login`, {
+  //     method: 'GET',
+  //     headers: {
+  //       Authorization: `Bearer ${token}`
+  //     }
+  //   })
+  //
+  //   return response.data
+  // } catch (e) {
+  //   console.error(e)
+  //   return false
+  // }
 }
 
 const logout = () => {
