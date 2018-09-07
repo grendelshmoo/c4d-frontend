@@ -5,7 +5,7 @@ const AuthenticatedButtons = ({ logout }) => {
     <div className="collapse navbar-collapse" id="navbarText">
       <ul className="navbar-nav mr-auto">
         <li className="nav-item active">
-          <a className="nav-link" href="">Records
+          <a className="nav-link" href="/records">Records
             <span className="sr-only">(current)</span>
           </a>
         </li>
@@ -13,7 +13,7 @@ const AuthenticatedButtons = ({ logout }) => {
           <a className="nav-link" href="">Add</a>
         </li>
         <li className="nav-item">
-          <a className="nav-link" href="">Contacts</a>
+          <a className="nav-link" href="/contacts">Contacts</a>
         </li>
       </ul>
       <span className="navbar-text">

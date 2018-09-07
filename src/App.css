@@ -1,31 +1,74 @@
-/* .App {
-  text-align: center;
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+.navbar {
+  height: 50px;
 }
 
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
+.card {
+  width: 18em;
+}
+
+label {
+  /* text-decoration: underline; */
+}
+
+#general-record {
+  background-color: #DDFFDD;
+}
+
+#parties-record {
+  background-color: #FFDDDD;
+}
+
+#property-record {
+  background-color: #CCFFFF;
+}
+
+#transaction-record {
+  background-color: #FFCCFF;
+}
+#remarks-record {
+  background-color: #DDDDFF;
+  height: 20%;
+}
+.testfield {
+  background: transparent;
+  border-top: transparent;
+  border-left: transparent;
+  border-right: transparent;
+  border-bottom: transparent;
+  font-weight: 200;
+  /* color: white; */
+  /* background-color: #000; */
+  background-color:white;
+  padding-left: 0;
+}
+
+#c4dlogo {
+  height: 40px;
+  width: 80px;
+}
+
+#searchfield {
+  background: transparent;
+  border-top: transparent !important;
+  border-left: transparent !important;
+  border-right: transparent !important;
+  border-bottom: 2px solid !important;
+  font-weight: 200;
   color: white;
+  padding-left: 0;
 }
 
-.App-title {
-  font-size: 1.5em;
+#parties-record-list {
+  /* font-size: large; */
+  list-style: none;
+  margin: 0;
 }
-
-.App-intro {
-  font-size: large;
-}
-
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-} */
 
 .table {
   font-size: small;
@@ -34,8 +77,73 @@
 #parties-list {
   font-size: x-small;
   list-style: none;
-  margin:0;
-  padding:0;
-
-
+  margin: 0;
+  padding: 0;
 }
+
+.record-field {
+  border-radius: 15px;
+  font-size: small;
+  background: transparent;
+  border-top: transparent !important;
+  border-left: transparent !important;
+  border-right: transparent !important;
+  border-bottom: transparent !important;
+  font-weight: 200;
+  color: white;
+  padding-left: 0;
+}
+
+#record-line {
+  font-size: small;
+  border-radius: 0;
+  outline: none;
+  background: transparent;
+  border-top: transparent !important;
+  border-left: transparent !important;
+  border-right: transparent !important;
+  border-bottom: 1px solid !important;
+  font-weight: 200;
+  color: white;
+  padding-left: 0;
+}
+
+#comments-field {
+  font-size: small;
+  border-radius: 0;
+  outline: none;
+  background: transparent;
+  border-top: transparent !important;
+  border-left: transparent !important;
+  border-right: transparent !important;
+  border-bottom: transparent !important;
+  font-weight: 200;
+  color: white;
+  padding-left: 0;
+}
+
+/* #parties-field {
+  font-size: small;
+  border-radius: 15px;
+  background:  transparent;
+  border-top: transparent !important;
+  border-left: transparent !important;
+  border-right: transparent !important;
+  border-bottom: 2px solid !important;
+  font-weight: 200;
+  color: white;
+  padding-left: 0;
+}
+
+#property-field {
+  font-size: small;
+  border-radius: 15px;
+  background: transparent;
+  border-top: transparent !important;
+  border-left: transparent !important;
+  border-right: transparent !important;
+  border-bottom: 2px solid !important;
+  font-weight: 200;
+  color: white;
+  padding-left: 0;
+} */

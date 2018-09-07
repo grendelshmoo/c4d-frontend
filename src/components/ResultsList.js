@@ -3,11 +3,11 @@ import moment from 'moment'
 import PartiesList from './PartiesList'
 import {Link} from 'react-router-dom'
 
-const ResultsList = ({searchResults}) => {
+const ResultsList = ({searchResults, setActiveRecord}) => {
   const rows = searchResults.data.map(record => {
 
     return (<tr key={record.id}>
-      <th scope="row"><Link to={`/records/${record.id}`}> {record.id}</Link></th>
+      <th scope="row"><Link onClick={() => {setActiveRecord(record.id)}} to={`/records/${record.id}`}> {record.id}</Link></th>
       <td>{moment(record.recording_date).format("MM/DD/YY")}</td>
       <td>{record.document_type}</td>
       <td>{record.parties.map((party, i) => <PartiesList key={i} party={party}/>)}</td>

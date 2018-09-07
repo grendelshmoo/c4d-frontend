@@ -2,7 +2,7 @@ import React from 'react'
 import ResultsList from './ResultsList'
 import ResultHeader from './ResultHeader'
 
-const SearchResults = ({searchResults}) => {
+const SearchResults = ({searchResults, setActiveRecord}) => {
   return (
     <div className="row m-2">
       <div className="col p-2">
@@ -12,7 +12,7 @@ const SearchResults = ({searchResults}) => {
               <ResultHeader />
               : <thead></thead>
             }
-          <ResultsList searchResults={searchResults} />
+          <ResultsList setActiveRecord={setActiveRecord} searchResults={searchResults} />
         </table>
       </div>
 
