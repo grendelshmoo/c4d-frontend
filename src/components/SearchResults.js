@@ -1,8 +1,9 @@
 import React from 'react'
+import {connect} from 'react-redux'
 import ResultsList from './ResultsList'
 import ResultHeader from './ResultHeader'
 
-const SearchResults = ({searchResults, setActiveRecord}) => {
+const SearchResults = ({searchResults}) => {
   return (
     <div className="row m-2">
       <div className="col p-2">
@@ -12,7 +13,7 @@ const SearchResults = ({searchResults, setActiveRecord}) => {
               <ResultHeader />
               : <thead></thead>
             }
-          <ResultsList setActiveRecord={setActiveRecord} searchResults={searchResults} />
+          <ResultsList />
         </table>
       </div>
 
@@ -20,4 +21,7 @@ const SearchResults = ({searchResults, setActiveRecord}) => {
   )
 }
 
-export default SearchResults
+const mapStateToProps = ({records}) => ({
+  searchResults: records.searchResults
+})
+export default connect(mapStateToProps, null)(SearchResults)

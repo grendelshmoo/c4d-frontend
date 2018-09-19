@@ -1,33 +1,40 @@
 import React from 'react'
+import {bindActionCreators} from 'redux'
+import {connect} from 'react-redux'
+import {keywordSearch} from '../actions/records'
 // import SearchResults from './SearchResults'
 import axios from 'axios'
 const BASE_URL = `http://localhost:5000`
 
-async function grantorSearch(event, cb) {
-  event.preventDefault()
-  try {
-    // console.log(event.target['grantor-search'].value)
-    axios(`${BASE_URL}/api/records/search?grantor=${event.target['grantor-search'].value}`, {
-      headers: {
-        authorization: `Bearer ${localStorage.getItem('c4d')}`
-      },
-      method: 'GET'
-    }).then(response => cb(response))
-  } catch (e) {
-    console.error(e.response)
-    return false
-  }
 
-}
+// async function grantorSearch(event, cb) {
+//   event.preventDefault()
+//   try {
+//     // console.log(event.target['grantor-search'].value)
+//     axios(`${BASE_URL}/api/records/search?grantor=${event.target['grantor-search'].value}`, {
+//       headers: {
+//         authorization: `Bearer ${localStorage.getItem('c4d')}`
+//       },
+//       method: 'GET'
+//     }).then(response => cb(response))
+//   } catch (e) {
+//     console.error(e.response)
+//     return false
+//   }
+//
+// }
 
-const SearchField = ({updateResults}) => {
+const SearchField = ({keywordSearch}) => {
   return (
     <div className="row p-2 m-2">
     <div className="col-5 bg-dark text-light p-3">
     <span>
       Keyword / Fulltext Search
     </span>
-    <form onSubmit={(event) => grantorSearch(event, updateResults)} className="form-inline md-form form-sm m-2 p-2">
+    <form onSubmit={ (e) => {
+      e.preventDefault()
+      keywordSearch(e.target.value)
+      }} className="form-inline md-form form-sm m-2 p-2">
       <i className="fa fa-search" aria-hidden="true"></i>
       <input id="searchfield" className="form-control form-control-sm ml-3 w-75" type="text" placeholder="Search" aria-label="Search" name="grantor-search"></input>
     </form>
@@ -40,7 +47,7 @@ const SearchField = ({updateResults}) => {
     </span>
     <form className="form-inline md-form form-sm m-2 p-2">
 
-      <input onSubmit={(event) => grantorSearch(event, updateResults)} id="searchfield" className="form-control form-control-sm ml-3 w-75" type="text" placeholder="Grantor" aria-label="Search"></input>
+      <input onSubmit={null} id="searchfield" className="form-control form-control-sm ml-3 w-75" type="text" placeholder="Grantor" aria-label="Search"></input>
       <input id="searchfield" className="form-control form-control-sm ml-3 w-75" type="text" placeholder="Grantee" aria-label="Search"></input>
 
       {/* <div className="form-group">
@@ -61,4 +68,5 @@ const SearchField = ({updateResults}) => {
 )
 }
 
-export default SearchField
+const mapDispatchToProps = (dispatch) => bindActionCreators({keywordSearch}, dispatch)
+export default connect(null, mapDispatchToProps)(SearchField)

@@ -9,7 +9,7 @@ const login = async (email, password) => {
     localStorage.setItem(TOKEN_NAME, token)
     return true
   } catch (e) {
-    console.error(e.response)
+    console.error(e.message, e)
     return false
   }
 }

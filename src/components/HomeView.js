@@ -2,13 +2,12 @@ import React from 'react'
 import SearchResults from './SearchResults'
 import SearchField from './SearchField'
 
-const HomeView = ({updateResults, searchResults, setActiveRecord}) => {
+const HomeView = () => {
 
   return (<div className="container-fluid">
+      <SearchField />
+      <SearchResults />
 
-      <SearchField updateResults={updateResults}/>
-      <SearchResults setActiveRecord={setActiveRecord} searchResults={searchResults}/>
-      
   </div>)
 
 }

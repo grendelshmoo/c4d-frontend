@@ -1,29 +1,22 @@
 import axios from 'axios'
 const BASE_URL = `http://localhost:5000`
 
-const grantorSearch = async(grantor) => {
+async function keyWord(event, cb) {
+  event.preventDefault()
   try {
-    return axios.get(`${BASE_URL}/api/records/search?grantor=${grantor}`)
-      .then(
-        response => {
-          if (response.data.data.length === 0) {
-
-            // Need a no response error document.getElementById('noresults-alert').classList.remove('d-none')
-
-          }
-          if (response.data.data.length >= 1) {
-            //  document.getElementById('noresults-alert').classList.add('d-none')
-          }
-          const listings = response.data.data
-          //
-        }
-      )
+    // console.log(event.target['grantor-search'].value)
+    axios(`${BASE_URL}/api/records/search?grantor=${event.target['grantor-search'].value}`, {
+      headers: {
+        authorization: `Bearer ${localStorage.getItem('c4d')}`
+      },
+      method: 'GET'
+    }).then(response => cb(response))
   } catch (e) {
     console.error(e.response)
     return false
   }
+
 }
 
 
-
-export default { grantorSearch }
+export default { keyWord }

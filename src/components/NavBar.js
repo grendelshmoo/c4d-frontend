@@ -1,8 +1,11 @@
 import React from 'react'
 // import { Link } from 'react-router-dom'
 import AuthenticatedButtons from './AuthenticatedButtons'
+// import {bindActionCreators} from 'redux'
+import {connect} from 'react-redux'
+// import { logIn } from '../actions/auth'
 
-const NavBar = ({ isLoggedIn, logout}) => {
+const NavBar = ({ isLoggedIn }) => {
   return (<nav className="navbar navbar-expand-lg navbar-dark bg-dark">
     <a className="navbar-brand" href="">
       <img id="c4dlogo" alt="C4D" src="./images/c4d_logo.png"></img>
@@ -12,11 +15,13 @@ const NavBar = ({ isLoggedIn, logout}) => {
     </button>
   {
     isLoggedIn ?
-    <AuthenticatedButtons logout={ logout }/>
+    <AuthenticatedButtons />
     : ""
-
   }
   </nav>)
 }
 
-export default NavBar
+const mapStateToProps = ({auth}) => ({
+    isLoggedIn: auth.isLoggedIn })
+// const mapDispatchToProps = (dispatch) => (bindActionCreators({logIn, logOut, setIsEditable, setIsNotEditable, }), dispatch)
+export default connect(mapStateToProps, null)(NavBar)

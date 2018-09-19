@@ -1,6 +1,9 @@
 import React from 'react'
+import {bindActionCreators} from 'redux'
+import {connect} from 'react-redux'
+import {logOut} from '../actions/auth'
 
-const AuthenticatedButtons = ({ logout }) => {
+const AuthenticatedButtons = ({ logOut }) => {
   return (
     <div className="collapse navbar-collapse" id="navbarText">
       <ul className="navbar-nav mr-auto">
@@ -10,8 +13,11 @@ const AuthenticatedButtons = ({ logout }) => {
           </a>
         </li>
         <li className="nav-item">
-          <a className="nav-link" href="">Add</a>
+          <a className="nav-link" href="/properties">Properties</a>
         </li>
+        {/* <li className="nav-item">
+          <a className="nav-link" href="">Add</a>
+        </li> */}
         <li className="nav-item">
           <a className="nav-link" href="/contacts">Contacts</a>
         </li>
@@ -24,13 +30,13 @@ const AuthenticatedButtons = ({ logout }) => {
           <div className="dropdown-menu dropdown-menu-right bg-dark m-2" aria-labelledby="dropdownMenuLink">
             <a className="dropdown-item bg-dark" href="">Preferences...</a>
             <div className="dropdown-divider"></div>
-            <a onClick={ logout } className="dropdown-item bg-dark" href="">Logout</a>
+            <a onClick={ logOut } className="dropdown-item bg-dark" href="">Logout</a>
           </div>
         </div>
       </span>
     </div>
   )
-
 }
 
-export default AuthenticatedButtons
+const mapDispatchToProps = (dispatch) => bindActionCreators({logOut}, dispatch)
+export default connect(null, mapDispatchToProps)(AuthenticatedButtons)

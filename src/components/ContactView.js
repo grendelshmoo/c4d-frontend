@@ -26,7 +26,6 @@ class ContactView extends Component {
   }
 
   render() {
-    console.log(this.state.contacts)
     return (<div className="container-fluid">
       <div className="row m-2">
         <div className="col p-2">

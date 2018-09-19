@@ -1,12 +1,12 @@
 import React from 'react'
 import { Route, Redirect } from 'react-router-dom'
+import {connect} from 'react-redux'
 
-const AuthenticatedRoute = ({ component: Component, ...rest }) => (
+const AuthenticatedRoute = ({ component: Component, isLoggedIn }) => (
   <Route
-    {...rest}
     render={ props =>
-      rest.isLoggedIn ? (
-        <Component { ...props } { ...rest } />
+      isLoggedIn ? (
+        <Component { ...props } />
       ) : (
         <Redirect
           to={{
@@ -19,4 +19,5 @@ const AuthenticatedRoute = ({ component: Component, ...rest }) => (
   />
 );
 
-export default AuthenticatedRoute
+const mapStateToProps = ({auth}) => ({ isLoggedIn: auth.isLoggedIn })
+export default connect(mapStateToProps, null)(AuthenticatedRoute)
