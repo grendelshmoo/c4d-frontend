@@ -1,8 +1,8 @@
 import { KEYWORD_SEARCH, GET_ONE_RECORD } from '../actions/records'
 
 export default(state = {
-  searchResults: { data: {data: []}},
-  activeRecord: 0
+  searchResults: { data: []},
+  recordListing: { parties: [] }
 }, action) => {
   switch (action.type) {
     case KEYWORD_SEARCH:
@@ -12,7 +12,8 @@ export default(state = {
     }
     case GET_ONE_RECORD:
     return {
-      ...state
+      ...state,
+      recordListing: action.payload.data.data
     }
     default:
     return state

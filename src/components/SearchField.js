@@ -3,8 +3,8 @@ import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
 import {keywordSearch} from '../actions/records'
 // import SearchResults from './SearchResults'
-import axios from 'axios'
-const BASE_URL = `http://localhost:5000`
+// import axios from 'axios'
+// const BASE_URL = `http://localhost:5000`
 
 
 // async function grantorSearch(event, cb) {
@@ -33,10 +33,10 @@ const SearchField = ({keywordSearch}) => {
     </span>
     <form onSubmit={ (e) => {
       e.preventDefault()
-      keywordSearch(e.target.value)
+      keywordSearch(e.target.searchfield.value)
       }} className="form-inline md-form form-sm m-2 p-2">
       <i className="fa fa-search" aria-hidden="true"></i>
-      <input id="searchfield" className="form-control form-control-sm ml-3 w-75" type="text" placeholder="Search" aria-label="Search" name="grantor-search"></input>
+      <input id="searchfield" className="form-control form-control-sm ml-3 w-75" type="text" placeholder="Search" aria-label="Search" name="keyword-search"></input>
     </form>
 
   </div>

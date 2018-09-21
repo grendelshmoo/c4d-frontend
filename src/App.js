@@ -25,7 +25,7 @@ const App = ({isLoggedIn, verifyLogin}) => {
       <Switch>
 
         <AuthenticatedRoute exact={true} path="/records"
-          // { ...this.state } setActiveRecord={this.setActiveRecord} searchResults={this.state.searchResults.data} updateResults={this.updateResults}
+          //{ ...this.state } setActiveRecord={this.setActiveRecord} searchResults={this.state.searchResults.data} updateResults={this.updateResults}
           component={HomeView}/>
 
         <AuthenticatedRoute exact={true} path="/records/:id"
