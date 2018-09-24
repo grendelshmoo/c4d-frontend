@@ -1,53 +1,23 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
-import {getOneRecord} from '../actions/records'
+import {getOneRecord, editLocalRecord} from '../actions/records'
 import {setIsEditable} from '../actions/auth'
 import {withRouter} from 'react-router-dom'
-// import axios from 'axios'
 import moment from 'moment'
 import RecordPartiesList from './RecordPartiesList'
 import EditButtons from './EditButtons'
-// const BASE_URL = `http://localhost:5000`
 
-// {match, ...state, editStatus, changeEditStatus}
 class RecordView extends Component {
-  // constructor(props) {
-  //   super(props)
-  //   // this.state = {
-  //   //   record: {
-  //   //     parties: []
-  //   //   }
-  //   // }
-  // }
 
-  componentDidMount = async (props) => {
-    //call the getOneRecord Action here.
+  componentDidMount = (props) => {
     const recordId = this.props.match.params.id
-    // this.props.getOneRecord(this.props.recordId)
     this.props.getOneRecord(recordId)
-
-
-
-    //this.props.match.params.id passed in from withRouter
-
-    // console.log('RECORD ID:', this.props.match.params.id)
-    // try {
-    //   axios(`${BASE_URL}/api/records/${this.props.match.params.id}`, {
-    //     headers: {
-    //       authorization: `Bearer ${localStorage.getItem('c4d')}`
-    //     },
-    //     method: 'GET'
-    //   }).then(response => this.setState({record: response.data.data}))
-    // } catch (e) {
-    //   console.error(e.response)
-    //   return false
-    // }
   }
 
   render() {
     const record = this.props.recordListing
-    console.log(this.props.isEditable);
+  
     return (<div className="container-fluid ">
       <div className="row p-3">
         <label>
@@ -57,7 +27,10 @@ class RecordView extends Component {
       {/* General Group */}
       <div className="row">
         <div id="general-record" className="col m-1 p-1">
-          <form className="form">
+          <form onSubmit={ (e) => {
+            e.preventDefault()
+            console.log(e.target)
+            }} className="form">
 
             <div className="form-group form-row m-2 p-2">
               <label>Record #:</label>
@@ -65,7 +38,7 @@ class RecordView extends Component {
             </div>
             <div className="form-group form-row m-2 p-2">
               <label>Document Date:</label>
-              <input disabled={!this.props.isEditable} id="" className="form-control form-control-sm testfield" type="text" aria-label="" defaultValue={moment(record.document_date).format("MM/DD/YY")}></input>
+              <input onChange={(e) => {this.props.editLocalRecord('document_date', e.target.value)}} disabled={!this.props.isEditable} id="" className="form-control form-control-sm testfield" type="text" aria-label="" defaultValue={moment(record.document_date).format("MM/DD/YY")}></input>
             </div>
             <div className="form-group form-row m-2 p-2">
               <label>Recording Date:</label>
@@ -73,7 +46,7 @@ class RecordView extends Component {
             </div>
             <div className="form-group form-row m-2 p-2">
               <label>Document Type:</label>
-              <input disabled={!this.props.isEditable} id="" className="form-control form-control-sm testfield" type="text" aria-label="" defaultValue={record.document_type}></input>
+              <input onChange={(e) => {this.props.editLocalRecord('document_type', e.target.value)}} disabled={!this.props.isEditable} id="" className="form-control form-control-sm testfield" type="text" aria-label="" defaultValue={record.document_type}></input>
             </div>
             <div className="form-group form-row m-2 p-2">
               <label>Title Company:</label>
@@ -216,10 +189,11 @@ class RecordView extends Component {
     </div>)
   }
 }
-//withRouter in order to get this.props.match.params.id
+
+
 const mapStateToProps = ({records, auth}) => ({
   recordListing: records.recordListing,
   isEditable: auth.isEditable
 })
-const mapDispatchToProps = (dispatch) => bindActionCreators({getOneRecord, setIsEditable}, dispatch)
+const mapDispatchToProps = (dispatch) => bindActionCreators({getOneRecord, editLocalRecord, setIsEditable}, dispatch)
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(RecordView))
