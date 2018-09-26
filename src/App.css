@@ -48,9 +48,9 @@ label {
   padding-left: 0;
 }
 
-#c4dlogo {
+#navbarlogo {
   height: 40px;
-  width: 80px;
+  width: 190px;
 }
 
 #searchfield {
@@ -147,3 +147,87 @@ label {
   color: white;
   padding-left: 0;
 } */
+
+/* PropertyView */
+
+.record-card {
+  border: 1px solid;
+  outline: 1px;
+  border-radius: 10px;
+  height: 100%;
+  /* display: flex; */
+}
+
+.record-card label {
+  font-weight: 500;
+}
+
+.property-details {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.header-blue-bg {
+  background: #AFCBFF;
+}
+.header-red-bg {
+  background: #D8212C;
+  color: white;
+}
+.header-yellow-bg {
+  background: #FDC02F;
+  color: white;
+}
+.card-blue-outline {
+  border-color: #AFCBFF;
+}
+.card-red-outline {
+  border-color: #D8212C;
+}
+.card-yellow-outline {
+  border-color: #FDC02F;
+}
+
+.record-card-header {
+  height: 20px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.record-card-header-text {
+    font-size: 12px;
+}
+
+.record-card-form {
+  font-weight: 200;
+}
+
+.record-card-element {
+  height: 16px;
+  font-size: 12px;
+  background: transparent;
+  border-top: 1px solid;
+  border-left: 1px solid;
+  border-right: 1px solid;
+  border-bottom: 1px solid;
+  /* border-color: black; */
+  font-weight: 200;
+  outline-width: 0;
+  /* width: 50%; */
+}
+
+.property-details .form-group {
+  width: 50%;
+}
+
+.record-card-element[disabled] {
+  height: 16px;
+  font-size: 12px !important;
+  background: transparent;
+  border-top: transparent !important;
+  border-left: transparent !important;
+  border-right: transparent !important;
+  border-bottom: transparent !important;
+  font-weight: 200;
+  outline-width: thin;
+}

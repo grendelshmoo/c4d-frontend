@@ -10,6 +10,8 @@ import Login from './components/Login';
 import HomeView from './components/HomeView'
 import RecordView from './components/RecordView'
 import ContactView from './components/ContactView'
+import PropertySearch from './components/PropertySearch'
+import PropertyView from './components/PropertyView'
 // import SearchResults from './components/SearchResults';
 import {connect} from 'react-redux'
 // import {bindActionCreators} from 'redux'
@@ -25,17 +27,16 @@ const App = ({isLoggedIn, verifyLogin}) => {
       <Switch>
 
         <AuthenticatedRoute exact={true} path="/records"
-          //{ ...this.state } setActiveRecord={this.setActiveRecord} searchResults={this.state.searchResults.data} updateResults={this.updateResults}
           component={HomeView}/>
 
         <AuthenticatedRoute exact={true} path="/records/:id"
-          // { ... this.state }
-
-          // changeEditStatus={this.changeEditStatus} isEditable={this.props.isEditable}
           component={RecordView}/>
         <AuthenticatedRoute exact={true} path="/contacts"
-        // { ...this.state }
         component={ContactView}/>
+        <AuthenticatedRoute exact={true} path="/properties"
+        component={PropertySearch}/>
+        <AuthenticatedRoute exact={true} path="/properties/:id"
+        component={PropertyView}/>
 
         <Route exact={true} path="/login" render={({location}) => {
             const previous = location.state && location.state.from.pathname

@@ -9,7 +9,7 @@ const AuthenticatedButtons = ({ logOut }) => {
       <ul className="navbar-nav mr-auto">
         <li className="nav-item active">
           <a className="nav-link" href="/records">Records
-            <span className="sr-only">(current)</span>
+
           </a>
         </li>
         <li className="nav-item">
