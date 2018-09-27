@@ -43,4 +43,18 @@ async function getPropertyRecords(propertyId) {
   }
 }
 
-export default { getAllProperties, getOneProperty, getPropertyRecords }
+async function getChainOfTitle(propertyId) {
+  try {
+    return axios(`${BASE_URL}/api/properties/${propertyId}/chain`, {
+      headers: {
+        authorization: `Bearer ${localStorage.getItem('c4d')}`
+      },
+      method: 'GET'
+    })
+  } catch (e) {
+    console.error(e.response)
+    return false
+  }
+}
+
+export default { getAllProperties, getOneProperty, getPropertyRecords, getChainOfTitle }

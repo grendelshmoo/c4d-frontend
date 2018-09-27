@@ -1,10 +1,11 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
-import {getOneProperty, getPropertyRecords} from '../actions/properties'
+import {getOneProperty, getPropertyRecords, getChainOfTitle} from '../actions/properties'
 import {setIsEditable} from '../actions/auth'
 import {withRouter} from 'react-router-dom'
 import PropertyRecordsList from './PropertyRecordsList'
+import ChainOfTitleList from './ChainOfTitleList'
 // import {ListPropertyDocuments} from './ListPropertyDocuments'
 
 // hook up to redux for property.*
@@ -17,8 +18,8 @@ class PropertyView extends Component {
   componentDidMount = () => {
     const propertyId = this.props.match.params.id
     this.props.getOneProperty(propertyId)
+    this.props.getChainOfTitle(propertyId)
     this.props.getPropertyRecords(propertyId)
-
   }
 
   render() {
@@ -191,7 +192,8 @@ class PropertyView extends Component {
             </div>
             <small>
               <table className="table table-sm">
-                <tbody>
+                <ChainOfTitleList />
+                {/* <tbody>
                   <tr>
                     <td>11/6/2017</td>
                     <td>Kim Anderson</td>
@@ -222,7 +224,7 @@ class PropertyView extends Component {
                     <td>xxxxxxx</td>
 
                   </tr>
-                </tbody>
+                </tbody> */}
               </table>
             </small>
           </div>
@@ -234,7 +236,7 @@ class PropertyView extends Component {
       <div className="row p-4">
         <div className="col container-fluid text-center">
           <small>
-            <table className="table">
+            <table className="table table-striped">
               <thead className="thead bg-dark text-light">
                 <tr>
                   <th scope="col">Record</th>
@@ -245,38 +247,6 @@ class PropertyView extends Component {
                 </tr>
               </thead>
               <PropertyRecordsList />
-              {/* <tbody>
-
-                <tr>
-                  <th scope="row">111111</th>
-                  <td>6/24/99</td>
-                  <td>Deed</td>
-                  <td>names, names</td>
-                  <td>EA 117 1 3 R1 (3777m2)</td>
-                </tr>
-                <tr>
-                  <th scope="row">111111</th>
-                  <td>6/24/99</td>
-                  <td>Deed</td>
-                  <td>names, names</td>
-                  <td>EA 117 1 3 R1 (3777m2)</td>
-                </tr>
-                <tr>
-                  <th scope="row">111111</th>
-                  <td>6/24/99</td>
-                  <td>Deed</td>
-                  <td>names, names</td>
-                  <td>EA 117 1 3 R1 (3777m2)</td>
-                </tr>
-                <tr>
-                  <th scope="row">111111</th>
-                  <td>6/24/99</td>
-                  <td>Deed</td>
-                  <td>names, names</td>
-                  <td>EA 117 1 3 R1 (3777m2)</td>
-                </tr>
-
-              </tbody> */}
             </table>
           </small>
         </div>
@@ -289,5 +259,5 @@ const mapStateToProps = ({properties, auth}) => ({
   propertyListing: properties.propertyListing,
   isEditable: auth.isEditable
 })
-const mapDispatchToProps = (dispatch) => bindActionCreators({getOneProperty, getPropertyRecords, setIsEditable}, dispatch)
+const mapDispatchToProps = (dispatch) => bindActionCreators({getOneProperty, getPropertyRecords, getChainOfTitle, setIsEditable}, dispatch)
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(PropertyView))

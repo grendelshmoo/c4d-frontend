@@ -1,4 +1,4 @@
-import {GET_ALL_PROPERTIES, GET_ONE_PROPERTY, GET_PROPERTY_RECORDS} from '../actions/properties'
+import {GET_ALL_PROPERTIES, GET_ONE_PROPERTY, GET_PROPERTY_RECORDS, GET_CHAIN_OF_TITLE} from '../actions/properties'
 
 export default(state = {
   searchResults: {
@@ -6,6 +6,9 @@ export default(state = {
   },
   propertyListing: {},
   propertyRecords: {
+    data: []
+  },
+  titleChain: {
     data: []
   }
 }, action) => {
@@ -25,6 +28,11 @@ export default(state = {
         ...state,
         propertyRecords: action.payload.data
       }
+    case GET_CHAIN_OF_TITLE:
+    return {
+      ...state,
+      titleChain: action.payload.data
+    }
     default:
       return state
   }

@@ -23,3 +23,11 @@ export const getPropertyRecords = (id) => {
     return dispatch({type: GET_PROPERTY_RECORDS, payload: response})
   }
 }
+
+export const GET_CHAIN_OF_TITLE = 'GET_CHAIN_OF_TITLE'
+export const getChainOfTitle = (id) => {
+  return async (dispatch) => {
+    const response = await model.getChainOfTitle(id)
+    return dispatch({type: GET_CHAIN_OF_TITLE, payload: response})
+  }
+}

@@ -9,7 +9,6 @@ import {connect} from 'react-redux'
 // need to fix onlick setActiveRecord (look at original app.js)
 
 const PropertyRecordsList = ({propertyRecords}) => {
-  console.log("PROPERTY RECORDS:", propertyRecords.data[0])
   const rows = propertyRecords.data.map(record => {
 
     return (<tr key={record.id}>
