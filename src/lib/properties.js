@@ -57,4 +57,18 @@ async function getChainOfTitle(propertyId) {
   }
 }
 
-export default { getAllProperties, getOneProperty, getPropertyRecords, getChainOfTitle }
+async function getRiskAnalysisResults(propertyId) {
+  try {
+    return axios(`${BASE_URL}/api/properties/${propertyId}/analyze`, {
+      headers: {
+        authorization: `Bearer ${localStorage.getItem('c4d')}`
+      },
+      method: 'GET'
+    })
+  } catch (e) {
+    console.error(e.response)
+    return false
+  }
+}
+
+export default { getAllProperties, getOneProperty, getPropertyRecords, getChainOfTitle, getRiskAnalysisResults }

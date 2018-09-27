@@ -1,4 +1,4 @@
-import {GET_ALL_PROPERTIES, GET_ONE_PROPERTY, GET_PROPERTY_RECORDS, GET_CHAIN_OF_TITLE} from '../actions/properties'
+import {GET_ALL_PROPERTIES, GET_ONE_PROPERTY, GET_PROPERTY_RECORDS, GET_CHAIN_OF_TITLE, GET_RISK_ANALYSIS_RESULTS} from '../actions/properties'
 
 export default(state = {
   searchResults: {
@@ -9,6 +9,10 @@ export default(state = {
     data: []
   },
   titleChain: {
+    data: []
+  },
+  riskAnalysisResults: {
+    loading: false,
     data: []
   }
 }, action) => {
@@ -32,6 +36,22 @@ export default(state = {
     return {
       ...state,
       titleChain: action.payload.data
+    }
+    case GET_RISK_ANALYSIS_RESULTS:
+    return {
+      ...state,
+      riskAnalysisResults: {
+        ...state.riskAnalysisResults,
+        data: action.payload.data
+      }
+    }
+    case 'GET_RISK_ANALYSIS_RESULTS_LOADING':
+    return {
+      ...state,
+      riskAnalysisResults: {
+        ...state.riskAnalysisResults,
+        loading: action.payload
+      }
     }
     default:
       return state

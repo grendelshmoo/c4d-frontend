@@ -1,11 +1,12 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
-import {getOneProperty, getPropertyRecords, getChainOfTitle} from '../actions/properties'
+import {getOneProperty, getPropertyRecords, getChainOfTitle, getRiskAnalysisResults} from '../actions/properties'
 import {setIsEditable} from '../actions/auth'
 import {withRouter} from 'react-router-dom'
 import PropertyRecordsList from './PropertyRecordsList'
 import ChainOfTitleList from './ChainOfTitleList'
+import RiskAnalyis from './RiskAnalyis'
 // import {ListPropertyDocuments} from './ListPropertyDocuments'
 
 // hook up to redux for property.*
@@ -20,6 +21,7 @@ class PropertyView extends Component {
     this.props.getOneProperty(propertyId)
     this.props.getChainOfTitle(propertyId)
     this.props.getPropertyRecords(propertyId)
+    this.props.getRiskAnalysisResults(propertyId)
   }
 
   render() {
@@ -150,32 +152,9 @@ class PropertyView extends Component {
               </h5>
             </div>
             <small>
-              <table className="table table-sm">
-                <tbody>
-                  <tr>
-                    <td>
-                      <span className="badge badge-pill badge-danger">High</span>
-                    </td>
-                    <td>Property has Easement.</td>
-                    <td>666666</td>
 
-                  </tr>
-                  <tr>
-                    <td>
-                      <span className="badge badge-pill badge-warning">Med</span>
-                    </td>
-                    <td>Notice of unpaid Taxes.</td>
-                    <td>111111</td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <span className="badge badge-pill badge-info">Low</span>
-                    </td>
-                    <td>Current owner(s) have no mailing address on file.</td>
-                    <td>999999</td>
-                  </tr>
-                </tbody>
-              </table>
+              <RiskAnalyis />
+
             </small>
           </div>
 
@@ -193,38 +172,6 @@ class PropertyView extends Component {
             <small>
               <table className="table table-sm">
                 <ChainOfTitleList />
-                {/* <tbody>
-                  <tr>
-                    <td>11/6/2017</td>
-                    <td>Kim Anderson</td>
-                    <td>xxxxxxx</td>
-
-                  </tr>
-                  <tr>
-                    <td>1/16/2014</td>
-                    <td>Ron Young</td>
-                    <td>xxxxxxx</td>
-
-                  </tr>
-                  <tr>
-                    <td>3/24/1998</td>
-                    <td>Scott Jamison</td>
-                    <td>xxxxxxx</td>
-
-                  </tr>
-                  <tr>
-                    <td>5/6/1975</td>
-                    <td>Ellen Jones</td>
-                    <td>xxxxxxx</td>
-
-                  </tr>
-                  <tr>
-                    <td>7/16/1962</td>
-                    <td>John Doe, Jane Doe</td>
-                    <td>xxxxxxx</td>
-
-                  </tr>
-                </tbody> */}
               </table>
             </small>
           </div>
@@ -259,5 +206,5 @@ const mapStateToProps = ({properties, auth}) => ({
   propertyListing: properties.propertyListing,
   isEditable: auth.isEditable
 })
-const mapDispatchToProps = (dispatch) => bindActionCreators({getOneProperty, getPropertyRecords, getChainOfTitle, setIsEditable}, dispatch)
+const mapDispatchToProps = (dispatch) => bindActionCreators({getOneProperty, getPropertyRecords, getChainOfTitle, getRiskAnalysisResults, setIsEditable}, dispatch)
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(PropertyView))

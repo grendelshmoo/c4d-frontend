@@ -31,3 +31,24 @@ export const getChainOfTitle = (id) => {
     return dispatch({type: GET_CHAIN_OF_TITLE, payload: response})
   }
 }
+
+export const GET_RISK_ANALYSIS_RESULTS = 'GET_RISK_ANALYSIS_RESULTS'
+export const getRiskAnalysisResults = (id) => {
+  return async (dispatch) => {
+    dispatch({
+      type: 'GET_RISK_ANALYSIS_RESULTS_LOADING',
+      payload: true
+    })
+
+    const response = await model.getRiskAnalysisResults(id)
+    dispatch({
+      type: GET_RISK_ANALYSIS_RESULTS,
+      payload: response.data
+    })
+
+    dispatch({
+      type: 'GET_RISK_ANALYSIS_RESULTS_LOADING',
+      payload: false
+    })
+  }
+}
