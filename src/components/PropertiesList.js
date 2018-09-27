@@ -10,7 +10,7 @@ const PropertiesList = ({searchResults}) => {
       <th scope="row">
         <Link to={`/properties/${record.id}`}>{record.legal_description}</Link>
       </th>
-      <td>{record.physical_address}</td>
+      <td>{record.street_address}</td>
       <td>{record.building_type}</td>
       <td>{record.municipality}</td>
       <td>{record.island}</td>

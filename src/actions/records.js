@@ -12,7 +12,6 @@ export const keywordSearch = (fulltext) => {
 
 export const GET_ONE_RECORD = 'GET_ONE_RECORD'
 export const getOneRecord = (id) => {
-  //recordID & recordListing
   return async (dispatch) => {
     const response = await model.getOneRecord(id)
     return dispatch({type: GET_ONE_RECORD, payload: response})

@@ -20,7 +20,9 @@ class PropertySearch extends Component {
           <form onSubmit={null} className="form-inline md-form form-sm m-2 p-2">
             <i className="fa fa-search" aria-hidden="true"></i>
             <input id="searchfield" className="form-control form-control-sm ml-3 w-75" type="text" placeholder="Search" aria-label="Search" name="keyword-search"></input>
+            <button type="button" className="btn btn-sm btn-outline-danger m-3">Add Property</button>
           </form>
+
         </div>
       </div>
 
@@ -31,7 +33,7 @@ class PropertySearch extends Component {
               <thead className="thead bg-dark text-light">
                 <tr>
                   <th scope="col">Legal Description</th>
-                  <th scope="col">Physical Address</th>
+                  <th scope="col">Street Address</th>
                   <th scope="col">Building Type</th>
                   <th scope="col">Municipality/Village</th>
                   <th scope="col">Island</th>

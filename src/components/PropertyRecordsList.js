@@ -8,13 +8,12 @@ import {connect} from 'react-redux'
 
 // need to fix onlick setActiveRecord (look at original app.js)
 
-const ResultsList = ({searchResults, activeRecord}) => {
-
-  // console.log('SEARCH RESULTS:', searchResults)
-  const rows = searchResults.data.map(record => {
+const PropertyRecordsList = ({propertyRecords}) => {
+  console.log("PROPERTY RECORDS:", propertyRecords.data[0])
+  const rows = propertyRecords.data.map(record => {
 
     return (<tr key={record.id}>
-      <th scope="row"><Link onClick={activeRecord} to={`/records/${record.id}`}> {record.id}</Link></th>
+      <th scope="row"><Link to={`/records/${record.id}`}> {record.id}</Link></th>
       <td>{moment(record.recording_date).format("MM/DD/YY")}</td>
       <td>{record.document_type}</td>
       <td>{record.parties.map((party, i) => <PartiesList key={i} party={party}/>)}</td>
@@ -23,12 +22,11 @@ const ResultsList = ({searchResults, activeRecord}) => {
   })
 
   return <tbody>{rows}</tbody>
-
+  // return <p>yo</p>
 }
 
-const mapStateToProps = ({records}) => ({
-  searchResults: records.searchResults,
-  activeRecord: records.activeRecord
+const mapStateToProps = ({properties}) => ({
+  propertyRecords: properties.propertyRecords
 })
 // const mapDispatchToProps = (dispatch) => bindActionCreators({keyWord}, dispatch)
-export default connect(mapStateToProps, null)(ResultsList)
+export default connect(mapStateToProps, null)(PropertyRecordsList)

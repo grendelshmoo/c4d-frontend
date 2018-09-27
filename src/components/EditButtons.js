@@ -4,7 +4,6 @@ import {connect} from 'react-redux'
 import {setIsNotEditable} from '../actions/auth'
 import {updateRecord, deleteRecord} from '../actions/records'
 
-
 const EditButtons = ({recordListing, setIsNotEditable, updateRecord, deleteRecord}) => {
   return (
     <div>

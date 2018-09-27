@@ -10,14 +10,14 @@ import EditButtons from './EditButtons'
 
 class RecordView extends Component {
 
-  componentDidMount = (props) => {
+  componentDidMount = () => {
     const recordId = this.props.match.params.id
     this.props.getOneRecord(recordId)
   }
 
   render() {
     const record = this.props.recordListing
-  
+
     return (<div className="container-fluid ">
       <div className="row p-3">
         <label>

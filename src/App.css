@@ -149,6 +149,10 @@ label {
 } */
 
 /* PropertyView */
+.plat-map-image {
+  height: 350px;
+  width: 350px;
+}
 
 .record-card {
   border: 1px solid;
