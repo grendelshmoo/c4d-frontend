@@ -29,7 +29,7 @@ class RecordView extends Component {
         <div id="general-record" className="col m-1 p-1">
           <form onSubmit={ (e) => {
             e.preventDefault()
-            console.log(e.target)
+            // console.log(e.target)
             }} className="form">
 
             <div className="form-group form-row m-2 p-2">

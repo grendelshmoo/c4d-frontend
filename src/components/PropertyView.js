@@ -7,6 +7,7 @@ import {withRouter} from 'react-router-dom'
 import PropertyRecordsList from './PropertyRecordsList'
 import ChainOfTitleList from './ChainOfTitleList'
 import RiskAnalyis from './RiskAnalyis'
+import PropertyMapView from './PropertyMapView'
 // import {ListPropertyDocuments} from './ListPropertyDocuments'
 
 // hook up to redux for property.*
@@ -123,24 +124,7 @@ class PropertyView extends Component {
 
         </div>
         {/* Right Top Column - Map & Image */}
-        <div className="col-5 p-1 text-center">
-          <img className="plat-map-image" alt={property.map_document} src={`http://localhost:3000/images/${property.map_document}.jpg`}></img>
-
-          <div className="btn-group btn-group-toggle" data-toggle="buttons">
-            <label className="btn btn-secondary active">
-              <input type="radio" name="options" id="option1" autoComplete="off"/>
-              Plat
-            </label>
-            <label className="btn btn-secondary">
-              <input type="radio" name="options" id="option2" autoComplete="off"/>
-              Street
-            </label>
-            <label className="btn btn-secondary">
-              <input type="radio" name="options" id="option3" autoComplete="off"/>
-              Flood
-            </label>
-          </div>
-        </div>
+        <PropertyMapView />
       </div>
       <div className="row">
         {/* Left mid Column - Risk Analyis */}

@@ -9,6 +9,7 @@ export default(state = {
     data: []
   },
   titleChain: {
+    loading: false,
     data: []
   },
   riskAnalysisResults: {

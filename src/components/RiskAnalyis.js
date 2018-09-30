@@ -1,6 +1,15 @@
 import React from 'react'
+// import {css} from 'react-emotion'
+// import {PropagateLoader} from 'react-spinners'
+import Spinner from 'react-spinkit'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
+
+// const override = css`
+//     display: block;
+//     margin: 0 auto;
+//     border-color: red;
+// `;
 
 function getLink(ele) {
   if (ele.contact_id)
@@ -20,10 +29,9 @@ function getPill(ele) {
 }
 
 const RiskAnalyis = ({loading, riskAnalysisResults}) => {
-  // add spinner here
+  // http://kyleamathews.github.io/react-spinkit/
   if (loading)
-    return <span>Loading</span>
-  console.log("Risk Results", riskAnalysisResults)
+  return <div className="container d-flex justify-content-center m-3 p-3"><Spinner name='line-scale' color='#D8212C' /></div>
 
   const rows = riskAnalysisResults.map((ele, i) => {
     return (

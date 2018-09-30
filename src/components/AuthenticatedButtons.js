@@ -22,6 +22,7 @@ const AuthenticatedButtons = ({ logOut }) => {
           <a className="nav-link" href="/contacts">Contacts</a>
         </li>
       </ul>
+      <div className="text-light m-2 p-3">Craig F.</div>
       <span className="navbar-text">
       <div className="dropdown show">
           <a className="btn btn-outline-danger dropdown-toggle" href="" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
