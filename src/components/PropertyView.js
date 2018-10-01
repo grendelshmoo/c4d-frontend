@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
 import {getOneProperty, getPropertyRecords, getChainOfTitle, getRiskAnalysisResults} from '../actions/properties'
+import {getLocationData} from '../actions/maps'
 import {setIsEditable} from '../actions/auth'
 import {withRouter} from 'react-router-dom'
 import PropertyRecordsList from './PropertyRecordsList'
@@ -19,6 +20,8 @@ class PropertyView extends Component {
 
   componentDidMount = () => {
     const propertyId = this.props.match.params.id
+
+
     this.props.getOneProperty(propertyId)
     this.props.getChainOfTitle(propertyId)
     this.props.getPropertyRecords(propertyId)
@@ -27,6 +30,7 @@ class PropertyView extends Component {
 
   render() {
     const property = this.props.propertyListing
+
     return (<div className="container-fluid">
       <div className="row p-3">
         {/* Left Top Column - Property Details */}
@@ -190,5 +194,5 @@ const mapStateToProps = ({properties, auth}) => ({
   propertyListing: properties.propertyListing,
   isEditable: auth.isEditable
 })
-const mapDispatchToProps = (dispatch) => bindActionCreators({getOneProperty, getPropertyRecords, getChainOfTitle, getRiskAnalysisResults, setIsEditable}, dispatch)
+const mapDispatchToProps = (dispatch) => bindActionCreators({getOneProperty, getPropertyRecords, getChainOfTitle, getRiskAnalysisResults, setIsEditable, getLocationData}, dispatch)
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(PropertyView))

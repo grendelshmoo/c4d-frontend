@@ -5,7 +5,6 @@ import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 
 const ChainOfTitleList = ({titleChain}) => {
-  console.log('CHAIN OF TITLE RESPONSE:', titleChain);
   const rows = titleChain.data.map(record => {
     return (<tr key={record.id}>
       <td>{moment(record.recording_date).format("MM/DD/YY")}</td>

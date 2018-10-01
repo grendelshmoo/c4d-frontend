@@ -25,7 +25,7 @@ async function updateRecord(recordId, record) {
       headers: {
         authorization: `Bearer ${localStorage.getItem('c4d')}`
       },
-      data: {...record}    
+      data: {...record}
     })
 
   } catch (e) {

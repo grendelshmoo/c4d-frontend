@@ -1,10 +1,18 @@
-async function getLocation() {
+import axios from 'axios'
+
+async function getLocationData(address) {
   try {
-    console.log('IN MAPS MODEL')
+    return axios('https://maps.googleapis.com/maps/api/geocode/json', {
+      method: 'GET',
+      params: {
+        key: 'AIzaSyCdLNbMd-tZnicdWqdOKpOFiUHvR1XhM_8',
+        address: address
+      }
+    })
   } catch (e) {
     console.error(e.response)
     return false
   }
 }
 
-export default { getLocation }
+export default { getLocationData }

@@ -1,4 +1,5 @@
 import model from '../lib/properties'
+import {getLocationData} from '../actions/maps'
 
 export const GET_ALL_PROPERTIES = 'GET_ALL_PROPERTIES'
 export const getAllProperties = () => {
@@ -12,7 +13,8 @@ export const GET_ONE_PROPERTY = 'GET_ONE_PROPERTY'
 export const getOneProperty = (id) => {
   return async (dispatch) => {
     const response = await model.getOneProperty(id)
-    return dispatch({type: GET_ONE_PROPERTY, payload: response})
+    dispatch({type: GET_ONE_PROPERTY, payload: response})
+    dispatch(getLocationData())
   }
 }
 
