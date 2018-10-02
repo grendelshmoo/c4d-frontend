@@ -12,7 +12,7 @@ return (<div className="d-flex justify-content-center">
   <GoogleMaps apiKey={`${REACT_APP_GMAPS_API_KEY}`} style={{
       height: "350px",
       width: "350px"
-    }} zoom={16} center={{
+    }} zoom={14} center={{
       lat: latitude,
       lng: longitude
     }} markers={{

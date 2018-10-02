@@ -4,6 +4,7 @@ import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
 import {getLocationData, setCurrentMapviewPlat, setCurrentMapviewGoogle, setCurrentMapviewFlood} from '../actions/maps'
 import GoogleMap from "./GoogleMap"
+import FloodMap from "./FloodMap"
 // import Spinner from 'react-spinkit'
 // const {REACT_APP_GMAPS_API_KEY} = process.env
 
@@ -51,7 +52,7 @@ class PropertyMapView extends Component {
     }
 
     if (this.props.currentMapView === "flood") {
-      currentMap = <img className="plat-map-image" alt={property.map_document} src={'https://images.dog.ceo/breeds/appenzeller/n02107908_314.jpg'}></img>
+      currentMap = <FloodMap />
     }
 
     return (<div className="col-5 p-1 text-center">
