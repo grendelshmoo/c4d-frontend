@@ -29,6 +29,8 @@ class PropertyView extends Component {
     this.props.getRiskAnalysisResults(propertyId)
   }
 
+
+
   render() {
     const property = this.props.propertyListing
 
@@ -45,26 +47,32 @@ class PropertyView extends Component {
             <form className="form record-card-form p-2 property-details">
               <div className="form-group">
                 <label>Legal Description:</label>
+                <textarea disabled={!this.props.isEditable ? 'disabled' : null}  className="record-card-element" rows="1" cols="40" value={property.legal_description} onChange={(e) => {
+                    this.props.editLocalProperty("legal_description", e.target.value)
+                  }}></textarea>
                 {/* <input disabled={!this.props.isEditable} type="text" className="form-control-sm record-card-element" defaultValue="EA 117 1 3 R1 (3777m2)"/> */}
-                <p>{property.legal_description}</p>
+                {/* <p>{property.legal_description}</p> */}
               </div>
               <div className="form-group">
                 <label>Street Address:</label>
+                <textarea disabled={!this.props.isEditable ? 'disabled' : null} className="record-card-element" rows="1" cols="40" value={property.street_address} onChange={(e) => {
+                    this.props.editLocalProperty("street_address", e.target.value)
+                  }}></textarea>
                 {/* <input disabled={!this.props.isEditable} type="text" className="form-control-sm record-card-element" defaultValue="356 S. Marine Corps Dr., Tamuning, GU, 96913"/> */}
-                <p>
-                  {property.street_address}</p>
+                {/* <p>
+                  {property.street_address}</p> */}
               </div>
 
               <div className="form-group">
                 <label>Lot:</label>
                 <input onChange={(e) => {
-                    this.editLocalProperty("lot", e.target.value)
+                    this.props.editLocalProperty("lot", e.target.value)
                   }} disabled={!this.props.isEditable} type="text" className="form-control-sm record-card-element" defaultValue={property.lot}/>
               </div>
               <div className="form-group">
                 <label>Block:</label>
                 <input onChange={(e) => {
-                    this.editLocalProperty("block", e.target.value)
+                    this.props.editLocalProperty("block", e.target.value)
                   }} disabled={!this.props.isEditable} type="text" className="form-control-sm record-card-element" defaultValue={property.block}/>
               </div>
               <div className="form-group">

@@ -1,5 +1,4 @@
 import React from 'react'
-// import { Link } from 'react-router-dom'
 import AuthenticatedButtons from './AuthenticatedButtons'
 // import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux'

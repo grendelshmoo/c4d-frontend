@@ -1,5 +1,6 @@
 import model from '../lib/properties'
 import {getLocationData} from '../actions/maps'
+// import {setIsNotEditable} from '../actions/auth'
 
 export const EDIT_LOCAL_PROPERTY = 'EDIT_LOCAL_PROPERTY'
 export const editLocalProperty = (key, value) => {
@@ -9,9 +10,9 @@ export const editLocalProperty = (key, value) => {
 export const UPDATE_PROPERTY = 'UPDATE_PROPERTY'
 export const updateProperty = (id, record) => {
   return async (dispatch) => {
-    const response = await model.updateProperty(id)
+    const response = await model.updateProperty(id, record)
     dispatch({type: UPDATE_PROPERTY, payload: response})
-    // dispatch(getOneProperty(id))
+    dispatch({type: 'SET_IS_NOT_EDITABLE'})
   }
 }
 

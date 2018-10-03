@@ -2,42 +2,57 @@ import React from 'react'
 import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
 import {logOut} from '../actions/auth'
+import {withRouter} from 'react-router-dom'
 
-const AuthenticatedButtons = ({ logOut }) => {
-  return (
-    <div className="collapse navbar-collapse" id="navbarText">
-      <ul className="navbar-nav mr-auto">
-        <li className="nav-item active">
-          <a className="nav-link" href="/records">Records
+const AuthenticatedButtons = ({logOut, location}) => {
+let path = ""
+  if (location.state && location.state.from.pathname) {
 
-          </a>
-        </li>
-        <li className="nav-item">
-          <a className="nav-link" href="/properties">Properties</a>
-        </li>
-        {/* <li className="nav-item">
+    const fullPath = location.state.from.pathname
+    if (fullPath.includes('records')) {
+      path = 'records'
+    } else if (fullPath.includes('properties')) {
+      path = 'properties'
+    } else if (fullPath.includes('contacts')) {
+      path = 'contacts'
+    }
+
+  }
+  return (<div className="collapse navbar-collapse" id="navbarText">
+    <ul className="navbar-nav mr-auto">
+      <li className={`nav-item ${path === "records" ? "active" : ''}`}>
+        <a className="nav-link" href="/records">Records
+
+        </a>
+      </li>
+      <li className={`nav-item ${path === "properties" ? "active" : ''}`}>
+        <a className="nav-link" href="/properties">Properties</a>
+      </li>
+      {/* <li className="nav-item">
           <a className="nav-link" href="">Add</a>
-        </li> */}
-        <li className="nav-item">
-          <a className="nav-link" href="/contacts">Contacts</a>
-        </li>
-      </ul>
-      <div className="text-light m-2 p-3">Craig F.</div>
-      <span className="navbar-text">
+        </li> */
+      }
+      <li className={`nav-item ${path === "contacts" ? "active" : ''}`}>
+        <a className="nav-link" href="/contacts">Contacts</a>
+      </li>
+    </ul>
+    <div className="text-light m-2 p-3">Craig F.</div>
+    <span className="navbar-text">
       <div className="dropdown show">
-          <a className="btn btn-outline-danger dropdown-toggle" href="" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <i className="fas fa-user-cog"></i>
-          </a>
-          <div className="dropdown-menu dropdown-menu-right bg-dark m-2" aria-labelledby="dropdownMenuLink">
-            <a className="dropdown-item bg-dark" href="">Preferences...</a>
-            <div className="dropdown-divider"></div>
-            <a onClick={ logOut } className="dropdown-item bg-dark" href="">Logout</a>
-          </div>
+        <a className="btn btn-outline-danger dropdown-toggle" href="" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <i className="fas fa-user-cog"></i>
+        </a>
+        <div className="dropdown-menu dropdown-menu-right bg-dark m-2" aria-labelledby="dropdownMenuLink">
+          <a className="dropdown-item bg-dark" href="">Preferences...</a>
+          <div className="dropdown-divider"></div>
+          <a onClick={logOut} className="dropdown-item bg-dark" href="">Logout</a>
         </div>
-      </span>
-    </div>
-  )
+      </div>
+    </span>
+  </div>)
 }
 
-const mapDispatchToProps = (dispatch) => bindActionCreators({logOut}, dispatch)
-export default connect(null, mapDispatchToProps)(AuthenticatedButtons)
+const mapDispatchToProps = (dispatch) => bindActionCreators({
+  logOut
+}, dispatch)
+export default withRouter(connect(null, mapDispatchToProps)(AuthenticatedButtons))
