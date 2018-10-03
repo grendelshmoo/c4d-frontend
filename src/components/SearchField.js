@@ -38,7 +38,7 @@ const SearchField = ({keywordSearch}) => {
       <i className="fa fa-search" aria-hidden="true"></i>
       <input id="searchfield" className="form-control form-control-sm ml-3 w-75" type="text" placeholder="Search" aria-label="Search" name="keyword-search"></input>
     </form>
-
+    <button type="button" className="btn btn-sm btn-outline-danger m-1">Add Record</button>
   </div>
   <div className="col-7 bg-dark text-light p-3">
 

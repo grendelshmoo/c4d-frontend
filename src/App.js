@@ -3,14 +3,15 @@ import React from 'react';
 import {Switch, Route, Redirect} from 'react-router-dom'
 import './App.css'
 import AuthenticatedRoute from './components/helpers/AuthenticatedRoute'
-import NavBar from './components/NavBar';
-import Login from './components/Login';
+import NavBar from './components/NavBar'
+import DashBoard from './components/DashBoard'
+import Login from './components/Login'
 import HomeView from './components/HomeView'
 import RecordView from './components/RecordView'
 import ContactView from './components/ContactView'
 import PropertySearch from './components/PropertySearch'
 import PropertyView from './components/PropertyView'
-import PropertyMapView from './components/PropertyMapView'
+// import PropertyMapView from './components/PropertyMapView'
 import {connect} from 'react-redux'
 
 
@@ -20,7 +21,7 @@ const App = ({isLoggedIn, verifyLogin}) => {
     <section className="container">
       <Switch>
 
-        <AuthenticatedRoute exact={true} path="/dashboard" component={PropertyMapView}/>
+        <AuthenticatedRoute exact={true} path="/dashboard" component={DashBoard}/>
         <AuthenticatedRoute exact={true} path="/records" component={HomeView}/>
 
         <AuthenticatedRoute exact={true} path="/records/:id" component={RecordView}/>

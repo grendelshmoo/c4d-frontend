@@ -1,6 +1,27 @@
 import model from '../lib/properties'
 import {getLocationData} from '../actions/maps'
 
+export const EDIT_LOCAL_PROPERTY = 'EDIT_LOCAL_PROPERTY'
+export const editLocalProperty = (key, value) => {
+  return {type: EDIT_LOCAL_PROPERTY, payload: {key, value}}
+}
+
+export const UPDATE_PROPERTY = 'UPDATE_PROPERTY'
+export const updateProperty = (id, record) => {
+  return async (dispatch) => {
+    const response = await model.updateProperty(id)
+    dispatch({type: UPDATE_PROPERTY, payload: response})
+    // dispatch(getOneProperty(id))
+  }
+}
+
+export const DELETE_PROPERTY = 'DELETE_PROPERTY'
+export const deleteProperty = (id) => {
+  return async () => {
+    console.log(id);
+  }
+}
+
 export const GET_ALL_PROPERTIES = 'GET_ALL_PROPERTIES'
 export const getAllProperties = () => {
   return async (dispatch) => {

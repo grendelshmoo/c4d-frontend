@@ -1,4 +1,4 @@
-import {GET_ALL_PROPERTIES, GET_ONE_PROPERTY, GET_PROPERTY_RECORDS, GET_CHAIN_OF_TITLE, GET_RISK_ANALYSIS_RESULTS} from '../actions/properties'
+import {GET_ALL_PROPERTIES, GET_ONE_PROPERTY, GET_PROPERTY_RECORDS, GET_CHAIN_OF_TITLE, GET_RISK_ANALYSIS_RESULTS, UPDATE_PROPERTY, DELETE_PROPERTY, EDIT_LOCAL_PROPERTY} from '../actions/properties'
 
 export default(state = {
   searchResults: {
@@ -18,6 +18,20 @@ export default(state = {
   }
 }, action) => {
   switch (action.type) {
+    case EDIT_LOCAL_PROPERTY:
+    return {
+      ...state,
+      propertyListing: { ...state.propertyListing,
+        [action.payload.key]: action.payload.value }
+    }
+    case UPDATE_PROPERTY:
+    return {
+      ...state
+    }
+    case DELETE_PROPERTY:
+    return {
+      ...state
+    }
     case GET_ALL_PROPERTIES:
       return {
         ...state,

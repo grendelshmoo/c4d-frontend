@@ -14,8 +14,7 @@ export default(state = {
     case 'GET_LOCATION_DATA_LOADING':
     return {
       ...state,
-      ...state.locationData,
-      currentMapView: action.payload
+      loading: action.payload
     }
     case SET_CURRENT_MAPVIEW_PLAT:
     return {

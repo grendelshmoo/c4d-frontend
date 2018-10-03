@@ -5,7 +5,7 @@ import {connect} from 'react-redux'
 import {getLocationData, setCurrentMapviewPlat, setCurrentMapviewGoogle, setCurrentMapviewFlood} from '../actions/maps'
 import GoogleMap from "./GoogleMap"
 import FloodMap from "./FloodMap"
-// import Spinner from 'react-spinkit'
+import Spinner from 'react-spinkit'
 // const {REACT_APP_GMAPS_API_KEY} = process.env
 
 class PropertyMapView extends Component {
@@ -29,7 +29,7 @@ class PropertyMapView extends Component {
 
   render() {
     const property = this.props.propertyListing
-    const locationData = this.props.locationData
+    // const locationData = this.props.locationData
 
     // if (locationData.results.length === 0 && property.street_address) {
     //   const address = property.street_address
@@ -44,6 +44,8 @@ class PropertyMapView extends Component {
     // if (this.props.currentMapView === "loading") { currentMap = <div>yo</div> }
 
     if (this.props.currentMapView === "plat") {
+      if (this.props.loading) return <div className="container d-flex justify-content-center m-3 p-3"><Spinner name='line-scale' color='#D8212C' /></div>
+
       currentMap = <img className="plat-map-image" alt={property.map_document} src={`http://localhost:3000/images/${property.map_document}.jpg`}></img>
     }
 

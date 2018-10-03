@@ -1,4 +1,4 @@
-import React from "react"
+import React from 'react'
 import {connect} from 'react-redux'
 import GoogleMaps from "simple-react-google-maps"
 const {REACT_APP_GMAPS_API_KEY} = process.env
