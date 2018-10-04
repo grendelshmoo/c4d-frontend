@@ -29,7 +29,7 @@ class PropertySearch extends Component {
       <div className="row p-3">
         <div className="col container-fluid text-center">
           <small>
-            <table className="table">
+            <table className="table table-striped">
               <thead className="thead bg-dark text-light">
                 <tr>
                   <th scope="col">Legal Description</th>

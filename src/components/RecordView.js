@@ -5,7 +5,8 @@ import {getOneRecord, editLocalRecord} from '../actions/records'
 import {setIsEditable} from '../actions/auth'
 import {withRouter} from 'react-router-dom'
 import moment from 'moment'
-import RecordPartiesList from './RecordPartiesList'
+// import RecordPartiesList from './RecordPartiesList'
+import EditPartiesList from './EditPartiesList'
 import RecordEditButtons from './RecordEditButtons'
 
 class RecordView extends Component {
@@ -54,8 +55,10 @@ class RecordView extends Component {
                 }
                 <div className="form-group">
                   <label>Document Type:</label>
-                  {/* <input disabled={!this.props.isEditable} type="text" className="form-control-sm record-card-element" defaultValue="EA 117 1 3 R1 (3777m2)"/> */}
-                  <p>{record.document_type}</p>
+                  <textarea rows="1" cols="80" disabled={!this.props.isEditable
+                      ? 'disabled'
+                      : null} type="text" className="record-card-element" value={record.document_type}></textarea>
+
                 </div>
                 <div className="form-group">
                   <label>Title Company:</label>
@@ -79,12 +82,25 @@ class RecordView extends Component {
             <small>
               <div className="row">
                 <div className="col m-1 p-1">
-                  {record.parties.map((party, i) => <RecordPartiesList key={i} party={party}/>)}
+                  <table className="table table-sm">
+                    <thead>
+                      <tr>
+                        <th scope="col">Role</th>
+                        <th scope="col">Last Name</th>
+                        <th scope="col">First Name</th>
+                        <th scope="col">Mailing Address</th>
+                        <th scope="col"></th>
+                      </tr>
+                    </thead>
 
+                    {record.parties.map((party, i) => <EditPartiesList key={i} party={party} isEditable={this.props.isEditable}/>)}
+
+                  </table>
+                  <a className={`btn btn-sm btn-outline-success ${!this.props.isEditable ? 'd-none' : ''}`}>add</a>
                 </div>
               </div>
-
             </small>
+
           </div>
         </div>
 
@@ -102,13 +118,18 @@ class RecordView extends Component {
                 <div className="form-group">
                   <label>Legal Description:</label>
                   {/* <input disabled={!this.props.isEditable} type="text" className="form-control-sm record-card-element" defaultValue="EA 117 1 3 R1 (3777m2)"/> */}
-                  <p>{record.legal_description}</p>
+
+                  <textarea rows="2" cols="70" disabled={!this.props.isEditable
+                      ? 'disabled'
+                      : null} type="text" className="record-card-element" value={record.legal_description}/>
                 </div>
                 <div className="form-group">
                   <label>Street Address:</label>
                   {/* <input disabled={!this.props.isEditable} type="text" className="form-control-sm record-card-element" defaultValue="356 S. Marine Corps Dr., Tamuning, GU, 96913"/> */}
-                  <p>
-                    {record.street_address}</p>
+
+                  <textarea rows="2" cols="70" disabled={!this.props.isEditable
+                      ? 'disabled'
+                      : null} type="text" className="record-card-element" value={record.street_address}/>
                 </div>
 
                 <div className="form-group">
@@ -238,8 +259,9 @@ class RecordView extends Component {
               <form className="form record-card-form p-2 property-details">
                 <div className="form-group">
                   <label>Remarks / Comments:</label>
-                  {/* <input disabled={!this.props.isEditable} type="text" className="form-control-sm record-card-element" defaultValue="EA 117 1 3 R1 (3777m2)"/> */}
-                  <p>{record.remarks}</p>
+                  <textarea rows="16" cols="120" disabled={!this.props.isEditable
+                      ? 'disabled'
+                      : null} type="text" className="record-card-element" value={record.remarks}></textarea>
                 </div>
 
               </form>
