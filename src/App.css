@@ -206,6 +206,10 @@ label {
   font-weight: 200;
 }
 
+textarea {
+  height: 40px !important;
+}
+
 .record-card-element {
   height: 20px;
   font-size: 12px;
@@ -217,12 +221,15 @@ label {
   /* border-color: black; */
   font-weight: 200;
   outline-width: 0;
+  margin: 2px;
+  /* padding: 10px; */
   /* width: 50%; */
 }
 
 .property-details .form-group {
   width: 50%;
 }
+
 
 .record-card-element[disabled] {
   height: 16px;

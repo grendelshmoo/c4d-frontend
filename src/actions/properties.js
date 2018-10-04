@@ -2,6 +2,14 @@ import model from '../lib/properties'
 import {getLocationData} from '../actions/maps'
 // import {setIsNotEditable} from '../actions/auth'
 
+export const ADD_PROPERTY = 'ADD_PROPERTY'
+export const addProperty = (property) => {
+  return async (dispatch) => {
+    await model.addProperty(property)
+    dispatch({type: ADD_PROPERTY})
+  }
+}
+
 export const EDIT_LOCAL_PROPERTY = 'EDIT_LOCAL_PROPERTY'
 export const editLocalProperty = (key, value) => {
   return {type: EDIT_LOCAL_PROPERTY, payload: {key, value}}

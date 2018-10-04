@@ -1,14 +1,28 @@
 import axios from 'axios'
 const BASE_URL = `http://localhost:5000`
 
-async function updateProperty(propertyId, record) {
+async function addProperty(property) {
   try {
-    console.log('OUTGOING PAYLOAD:', record);
+    return axios(`${BASE_URL}/api/properties/`, {
+      headers: {
+        authorization: `Bearer ${localStorage.getItem('c4d')}`
+      },
+      data: property,
+      method: 'POST'
+    })
+  } catch (e) {
+    console.error(e.response)
+    return false
+  }
+}
+
+async function updateProperty(propertyId, property) {
+  try {
     return axios(`${BASE_URL}/api/properties/${propertyId}`, {
       headers: {
         authorization: `Bearer ${localStorage.getItem('c4d')}`
       },
-      data: record,
+      data: property,
       method: 'PATCH'
     })
   } catch (e) {
@@ -87,4 +101,4 @@ async function getRiskAnalysisResults(propertyId) {
   }
 }
 
-export default { getAllProperties, getOneProperty, getPropertyRecords, getChainOfTitle, getRiskAnalysisResults, updateProperty }
+export default { getAllProperties, getOneProperty, getPropertyRecords, getChainOfTitle, getRiskAnalysisResults, updateProperty, addProperty }

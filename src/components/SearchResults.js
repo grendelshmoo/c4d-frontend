@@ -4,7 +4,6 @@ import ResultsList from './ResultsList'
 import ResultHeader from './ResultHeader'
 
 const SearchResults = ({searchResults}) => {
-  console.log('SEARCH RESULTS LENGTH:', searchResults.data.length)
   return (
     <div className="row m-2">
       <div className="col p-2">

@@ -14,6 +14,7 @@ export const GET_ONE_RECORD = 'GET_ONE_RECORD'
 export const getOneRecord = (id) => {
   return async (dispatch) => {
     const response = await model.getOneRecord(id)
+        // console.log("RESPONSE:", response.data.data);
     return dispatch({type: GET_ONE_RECORD, payload: response})
   }
 }

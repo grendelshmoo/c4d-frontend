@@ -20,7 +20,7 @@ class PropertySearch extends Component {
           <form onSubmit={null} className="form-inline md-form form-sm m-2 p-2">
             <i className="fa fa-search" aria-hidden="true"></i>
             <input id="searchfield" className="form-control form-control-sm ml-3 w-75" type="text" placeholder="Search" aria-label="Search" name="keyword-search"></input>
-            <button type="button" className="btn btn-sm btn-outline-danger m-3">Add Property</button>
+            <a className="btn btn-sm btn-outline-danger m-3" href="/properties/add" role="button">Add Property</a>
           </form>
 
         </div>

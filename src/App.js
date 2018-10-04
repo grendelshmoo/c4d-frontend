@@ -8,9 +8,13 @@ import DashBoard from './components/DashBoard'
 import Login from './components/Login'
 import HomeView from './components/HomeView'
 import RecordView from './components/RecordView'
+import ContactSearch from './components/ContactSearch'
 import ContactView from './components/ContactView'
 import PropertySearch from './components/PropertySearch'
 import PropertyView from './components/PropertyView'
+import RecordAdd from './components/RecordAdd'
+import PropertyAdd from './components/PropertyAdd'
+import ContactAdd from './components/ContactAdd'
 // import PropertyMapView from './components/PropertyMapView'
 import {connect} from 'react-redux'
 
@@ -23,10 +27,13 @@ const App = ({isLoggedIn, verifyLogin}) => {
 
         <AuthenticatedRoute exact={true} path="/dashboard" component={DashBoard}/>
         <AuthenticatedRoute exact={true} path="/records" component={HomeView}/>
-
+        <AuthenticatedRoute exact={true} path="/records/add" component={RecordAdd}/>
         <AuthenticatedRoute exact={true} path="/records/:id" component={RecordView}/>
-        <AuthenticatedRoute exact={true} path="/contacts" component={ContactView}/>
+        <AuthenticatedRoute exact={true} path="/contacts" component={ContactSearch}/>
+        <AuthenticatedRoute exact={true} path="/contacts/add" component={ContactAdd}/>
+        <AuthenticatedRoute exact={true} path="/contacts/:id" component={ContactView}/>
         <AuthenticatedRoute exact={true} path="/properties" component={PropertySearch}/>
+        <AuthenticatedRoute exact={true} path="/properties/add" component={PropertyAdd}/>
         <AuthenticatedRoute exact={true} path="/properties/:id" component={PropertyView}/>
 
         <Route exact={true} path="/login" render={({location}) => {
@@ -40,8 +47,6 @@ const App = ({isLoggedIn, verifyLogin}) => {
 
     </section>
   </main>)
-  // }
-
 }
 
 const mapStateToProps = ({auth}) => ({isLoggedIn: auth.isLoggedIn})

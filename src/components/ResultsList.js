@@ -10,7 +10,6 @@ import {connect} from 'react-redux'
 
 const ResultsList = ({searchResults, activeRecord}) => {
 
-  // console.log('SEARCH RESULTS:', searchResults)
   const rows = searchResults.data.map(record => {
 
     return (<tr key={record.id}>
