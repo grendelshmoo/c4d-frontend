@@ -1,15 +1,28 @@
-import React from 'react'
+import React, {Component} from 'react'
+import {connect} from 'react-redux'
+import {bindActionCreators} from 'redux'
+import {getAllRecords} from '../actions/records'
 import SearchResults from './SearchResults'
 import SearchField from './SearchField'
 
-const HomeView = () => {
 
+
+class HomeView extends Component {
+
+componentDidMount = () => {
+    this.props.getAllRecords()
+  }
+
+render () {
   return (<div className="container-fluid">
       <SearchField />
       <SearchResults />
 
   </div>)
+}
+
 
 }
 
-export default HomeView
+const mapDispatchToProps = (dispatch) => bindActionCreators({getAllRecords}, dispatch)
+export default connect(null, mapDispatchToProps)(HomeView)

@@ -1,4 +1,4 @@
-import {KEYWORD_SEARCH, GET_ONE_RECORD, UPDATE_RECORD, DELETE_RECORD, EDIT_LOCAL_RECORD} from '../actions/records'
+import {KEYWORD_SEARCH, GET_ALL_RECORDS, GET_ONE_RECORD, UPDATE_RECORD, DELETE_RECORD, EDIT_LOCAL_RECORD, ADD_EMPTY_PARTY} from '../actions/records'
 
 export default(state = {
   searchResults: {
@@ -13,6 +13,11 @@ export default(state = {
       return {
         ...state,
         searchResults: action.payload
+      }
+    case GET_ALL_RECORDS:
+      return {
+        ...state,
+        searchResults: action.payload.data
       }
     case GET_ONE_RECORD:
       return {
@@ -34,6 +39,16 @@ export default(state = {
     case DELETE_RECORD:
       return {
         ...state
+      }
+    case ADD_EMPTY_PARTY:
+      return {
+        ...state,
+        recordListing: {
+          ...state.recordListing,
+          parties: [...state.recordListing.parties, { first_name: '',
+                      last_name: '',
+                      mailing_address: ''}]
+        }
       }
     default:
       return state

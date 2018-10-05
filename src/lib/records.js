@@ -17,6 +17,20 @@ async function getOneRecord(recordId) {
   }
 }
 
+async function getAllRecords() {
+  try {
+    return axios(`${BASE_URL}/api/records/`, {
+      headers: {
+        authorization: `Bearer ${localStorage.getItem('c4d')}`
+      },
+      method: 'GET'
+    })
+  } catch (e) {
+    console.error(e.response)
+    return false
+  }
+}
+
 async function updateRecord(recordId, record) {
   try {
     console.log('IN MODEL:', recordId, record)
@@ -51,4 +65,4 @@ async function deleteRecord(recordId) {
 
 
 
-export default { getOneRecord, updateRecord, deleteRecord }
+export default { getOneRecord, getAllRecords, updateRecord, deleteRecord }
