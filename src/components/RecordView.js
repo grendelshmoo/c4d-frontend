@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
-import {getOneRecord, editLocalRecord, addEmptyParty, editLocalParty} from '../actions/records'
+import {getOneRecord, editLocalRecord, addEmptyParty, editLocalParty, removeParty} from '../actions/records'
 import {setIsEditable} from '../actions/auth'
 import {withRouter} from 'react-router-dom'
 import moment from 'moment'
@@ -101,7 +101,7 @@ class RecordView extends Component {
                       </tr>
                     </thead>
                     <tbody>
-                      {record.parties.map((party,i) => <EditPartiesList editLocalParty={this.props.editLocalParty} key={i} index={i} party={party} isEditable={this.props.isEditable}/>)}
+                      {record.parties.map((party,i) => <EditPartiesList recordId={record.record_number} removeParty={this.props.removeParty} editLocalParty={this.props.editLocalParty} key={i} index={i} party={party} isEditable={this.props.isEditable}/>)}
                     </tbody>
                   </table>
                   <a onClick={this.props.addEmptyParty} className={`btn btn-sm btn-outline-success ${ !this.props.isEditable
@@ -323,7 +323,7 @@ class RecordView extends Component {
                       this.props.editLocalRecord("remarks", e.target.value)
                     }} rows="16" cols="120" disabled={!this.props.isEditable
                       ? 'disabled'
-                      : null} type="text" className="record-card-element" value={record.remarks}></textarea>
+                      : null} type="text" className="record-card-element" value={record.remarks || ""}></textarea>
                 </div>
 
               </form>
@@ -348,6 +348,7 @@ const mapDispatchToProps = (dispatch) => bindActionCreators({
   editLocalRecord,
   setIsEditable,
   addEmptyParty,
-  editLocalParty
+  editLocalParty,
+  removeParty
 }, dispatch)
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(RecordView))

@@ -7,6 +7,7 @@ import {
   DELETE_RECORD,
   EDIT_LOCAL_RECORD,
   ADD_EMPTY_PARTY,
+  REMOVE_PARTY,
   EDIT_LOCAL_PARTY
 } from '../actions/records'
 
@@ -41,7 +42,7 @@ export default(state = {
     case UPDATE_RECORD:
       return {
         ...state,
-        recordListing: action.payload.data.data
+        // recordListing: action.payload.data.data
       }
     case EDIT_LOCAL_RECORD:
       return {
@@ -68,6 +69,10 @@ export default(state = {
             }
           ]
         }
+      }
+      case REMOVE_PARTY:
+      return {
+        ...state
       }
     case EDIT_LOCAL_PARTY:
       return {

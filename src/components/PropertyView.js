@@ -53,7 +53,7 @@ class PropertyView extends Component {
               </div>
               <div className="form-group">
                 <label>Street Address:</label>
-                <textarea disabled={!this.props.isEditable ? 'disabled' : null} className="record-card-element" rows="1" cols="40" defaultValue={property.street_address} onChange={(e) => {
+                <textarea disabled={!this.props.isEditable ? 'disabled' : null} className="record-card-element" rows="1" cols="40" value={property.street_address} onChange={(e) => {
                     this.props.editLocalProperty("street_address", e.target.value)
                   }}></textarea>
                 {/* <input disabled={!this.props.isEditable} type="text" className="form-control-sm record-card-element" defaultValue="356 S. Marine Corps Dr., Tamuning, GU, 96913"/> */}

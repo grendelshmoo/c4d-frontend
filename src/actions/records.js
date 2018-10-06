@@ -32,8 +32,6 @@ export const ADD_RECORD = 'ADD_RECORD'
 export const addRecord = (record) => {
 
   return async (dispatch) => {
-    console.log("RECORD TO BE SUBMITTED:", record);
-
     let newRecord = await properties.addProperty(record).then(resp => resp.data[0]).then((resp) => {
       return {
         property_id: resp.id,
@@ -58,11 +56,7 @@ export const addRecord = (record) => {
       }
     })
 
-    console.log("NEW RECORD:", newRecord);
-
     let response = await model.addRecord(newRecord)
-
-    console.log("RESPONSE:", response.data.transaction_id);
 
     let partyPromises = record.parties.map(person => {
       return contact.addContact(person).then((resp) => {
@@ -74,16 +68,7 @@ export const addRecord = (record) => {
       })
     })
     let partyList = await Promise.all(partyPromises)
-
-    console.log("PARTY LIST:", partyList);
-
-    let partyResponse = await model.addParties(partyList)
-
-    console.log("Party Response:", partyResponse);
-    // Check to see if the Property already exists.
-    // If it does, return the property ID, else create it.
-
-    // send contactlist to /api/records/parties w/ addParties
+    await model.addParties(partyList)
 
     return dispatch({type: ADD_RECORD})
   }
@@ -92,9 +77,44 @@ export const addRecord = (record) => {
 export const UPDATE_RECORD = 'UPDATE_RECORD'
 export const updateRecord = (recordId, record) => {
   return async (dispatch) => {
-    const response = await model.updateRecord(recordId, record)
-    return dispatch({type: UPDATE_RECORD, payload: response})
 
+
+
+    let recordUpdate = {
+        property_id: record.property_id,
+        document_date: record.document_date,
+        recording_date: record.recording_date,
+        document_type: record.document_type,
+        title_company: record.title_company,
+        instrument_number: record.instrument_number,
+        fy_number: record.fy_number,
+        cnmi_file_number: record.cnmi_file_number,
+        lcdn: record.lcdn,
+        book: record.book,
+        page: record.page,
+        amount: record.amount,
+        recording_fees: record.recording_fees,
+        land_tax: record.land_tax,
+        building_tax: record.building_tax,
+        land_appraised_value: record.land_appraised_value,
+        building_appraised_value: record.building_appraised_value,
+        remarks: record.remarks,
+        source_db: record.source_db
+      }
+
+      let response = await model.updateRecord(recordId, recordUpdate)
+      console.log("Response:", response.data.data[0].id );
+
+      // let propertyUpdate = {
+      //
+      // }
+      //
+      // let partiesUpdate = record.parties
+
+
+
+    dispatch({type: 'SET_IS_NOT_EDITABLE'})
+    dispatch({type: UPDATE_RECORD})
   }
 }
 export const EDIT_LOCAL_RECORD = 'EDIT_LOCAL_RECORD'
@@ -119,6 +139,18 @@ export const deleteRecord = (recordId) => {
 export const ADD_EMPTY_PARTY = 'ADD_EMPTY_PARTY'
 export const addEmptyParty = () => {
   return {type: ADD_EMPTY_PARTY}
+}
+
+export const REMOVE_PARTY = 'REMOVE_PARTY'
+export const removeParty = (party) => {
+  return async (dispatch) => {
+      const response = await model.removeParty(party)
+      const newRecord = await model.getOneRecord(response.data.data[0].transaction_id)
+      dispatch({type: REMOVE_PARTY})
+      dispatch({type: GET_ONE_RECORD, payload: newRecord})
+  }
+
+
 }
 
 export const EDIT_LOCAL_PARTY = 'EDIT_LOCAL_PARTY'

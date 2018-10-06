@@ -7,7 +7,7 @@ import {updateRecord, deleteRecord} from '../actions/records'
 const RecordEditButtons = ({recordListing, setIsNotEditable, updateRecord, deleteRecord}) => {
   return (
     <div>
-    <button onClick={(e) => {updateRecord(recordListing.id, recordListing)}} className="btn btn-sm btn-warning m-2">Save</button>
+    <button onClick={(e) => {updateRecord(recordListing.record_number, recordListing)}} className="btn btn-sm btn-warning m-2">Save</button>
     <button onClick={setIsNotEditable} type="button" className="btn btn-sm btn-secondary m-2">Cancel</button>
     <button onClick={deleteRecord} type="button" className="btn btn-sm btn-danger m-2">Delete</button>
   </div>

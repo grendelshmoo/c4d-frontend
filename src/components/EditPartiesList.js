@@ -1,6 +1,6 @@
 import React from 'react'
 
-const EditPartiesList = ({index, party, isEditable, editLocalParty}) => {
+const EditPartiesList = ({index, party, recordId, isEditable, editLocalParty, removeParty}) => {
 
   const rows = (
     <tr>
@@ -16,7 +16,7 @@ const EditPartiesList = ({index, party, isEditable, editLocalParty}) => {
       <td><textarea onChange={(e) => {
           editLocalParty(index, "mailing_address", e.target.value)
         }} rows="2" cols="40" disabled={!isEditable ? 'disabled' : null}  type="text" className="record-card-element" defaultValue={party.mailing_address}/></td>
-      <td><a href={null} onClick={() => {console.log(party.contact_id);}} className={`badge badge-danger text-light ${!isEditable ? 'd-none' : ''}`}>remove</a></td>
+      <td><a href={null} onClick={() => {removeParty(party);}} className={`badge badge-danger text-light ${!isEditable ? 'd-none' : ''}`}>remove</a></td>
     </tr>
   )
 return rows

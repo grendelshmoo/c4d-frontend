@@ -75,7 +75,21 @@ async function addParties(parties) {
     console.error(e.response)
     return false
   }
+}
 
+async function removeParty(party) {
+  try {
+    return axios(`${BASE_URL}/api/records/parties`, {
+      headers: {
+        authorization: `Bearer ${localStorage.getItem('c4d')}`
+      },
+      data: party,
+      method: 'DELETE'
+    })
+  } catch (e) {
+    console.error(e.response)
+    return false
+  }
 }
 
 async function deleteRecord(recordId) {
@@ -95,4 +109,4 @@ async function deleteRecord(recordId) {
 
 
 
-export default { getOneRecord, getAllRecords, addRecord, addParties, updateRecord, deleteRecord }
+export default { getOneRecord, getAllRecords, addRecord, addParties, updateRecord, deleteRecord, removeParty }
