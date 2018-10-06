@@ -212,7 +212,7 @@ textarea {
 
 /*
 
-.textarea-sm 
+.textarea-sm
 .textarea-m
 .textarea-l
 
@@ -249,4 +249,11 @@ textarea {
   border-bottom: transparent !important;
   font-weight: 200;
   outline-width: thin;
+}
+
+#property-link {
+  color: blue;
+  font-weight: 400;
+  font-style: bold;
+  text-decoration: underline;
 }

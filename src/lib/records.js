@@ -31,9 +31,23 @@ async function getAllRecords() {
   }
 }
 
+async function addRecord(record) {
+  try {
+    return axios(`${BASE_URL}/api/records/`, {
+      headers: {
+        authorization: `Bearer ${localStorage.getItem('c4d')}`
+      },
+      data: record,
+      method: 'POST'
+    })
+  } catch (e) {
+    console.error(e.response)
+    return false
+  }
+}
+
 async function updateRecord(recordId, record) {
   try {
-    console.log('IN MODEL:', recordId, record)
     return axios(`${BASE_URL}/api/records/${recordId}`, {
       method: 'PATCH',
       headers: {
@@ -46,6 +60,22 @@ async function updateRecord(recordId, record) {
     console.error(e.response)
     return false
   }
+}
+
+async function addParties(parties) {
+  try {
+    return axios(`${BASE_URL}/api/records/parties`, {
+      headers: {
+        authorization: `Bearer ${localStorage.getItem('c4d')}`
+      },
+      data: parties,
+      method: 'POST'
+    })
+  } catch (e) {
+    console.error(e.response)
+    return false
+  }
+
 }
 
 async function deleteRecord(recordId) {
@@ -65,4 +95,4 @@ async function deleteRecord(recordId) {
 
 
 
-export default { getOneRecord, getAllRecords, updateRecord, deleteRecord }
+export default { getOneRecord, getAllRecords, addRecord, addParties, updateRecord, deleteRecord }

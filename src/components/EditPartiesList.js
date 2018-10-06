@@ -1,13 +1,21 @@
 import React from 'react'
 
-const EditPartiesList = ({party, isEditable}) => {
+const EditPartiesList = ({index, party, isEditable, editLocalParty}) => {
 
   const rows = (
     <tr>
-      <td><input disabled={!isEditable} type="text" className="form-control-sm record-card-element" defaultValue={party.role}/></td>
-      <td><input disabled={!isEditable} type="text" className="form-control-sm record-card-element" defaultValue={party.last_name}/></td>
-      <td><input disabled={!isEditable}  type="text" className="form-control-sm record-card-element" defaultValue={party.first_name}/></td>
-      <td><textarea rows="2" cols="40" disabled={!isEditable ? 'disabled' : null}  type="text" className="record-card-element" defaultValue={party.mailing_address}/></td>
+      <td><input onChange={(e) => {
+          editLocalParty(index, "role", e.target.value)
+        }} disabled={!isEditable} type="text" className="form-control-sm record-card-element" defaultValue={party.role}/></td>
+      <td><input onChange={(e) => {
+          editLocalParty(index, "last_name", e.target.value)
+        }} disabled={!isEditable} type="text" className="form-control-sm record-card-element" defaultValue={party.last_name}/></td>
+      <td><input onChange={(e) => {
+          editLocalParty(index, "first_name", e.target.value)
+        }} disabled={!isEditable}  type="text" className="form-control-sm record-card-element" defaultValue={party.first_name}/></td>
+      <td><textarea onChange={(e) => {
+          editLocalParty(index, "mailing_address", e.target.value)
+        }} rows="2" cols="40" disabled={!isEditable ? 'disabled' : null}  type="text" className="record-card-element" defaultValue={party.mailing_address}/></td>
       <td><a href={null} onClick={() => {console.log(party.contact_id);}} className={`badge badge-danger text-light ${!isEditable ? 'd-none' : ''}`}>remove</a></td>
     </tr>
   )

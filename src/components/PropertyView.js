@@ -39,7 +39,10 @@ class PropertyView extends Component {
             </h5>
           </div>
           <small>
-            <form className="form record-card-form p-2 property-details">
+            <form onSubmit={(e) => {
+                e.preventDefault()
+                // console.log(e.target)
+              }} className="form record-card-form p-2 property-details">
               <div className="form-group">
                 <label>Legal Description:</label>
                 <textarea disabled={!this.props.isEditable ? 'disabled' : null}  className="record-card-element" rows="1" cols="40" value={property.legal_description} onChange={(e) => {

@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
-import {getOneRecord, editLocalRecord, addEmptyParty} from '../actions/records'
+import {getOneRecord, editLocalRecord, addEmptyParty, editLocalParty} from '../actions/records'
 import {setIsEditable} from '../actions/auth'
 import {withRouter} from 'react-router-dom'
 import moment from 'moment'
@@ -42,11 +42,15 @@ class RecordView extends Component {
                 </div>
                 <div className="form-group">
                   <label>Document Date:</label>
-                  <input disabled={!this.props.isEditable} type="text" className="form-control-sm record-card-element" defaultValue={moment(record.document_date).format("MM/DD/YY")}/>
+                  <input onChange={(e) => {
+                      this.props.editLocalRecord("document_date", e.target.value)
+                    }} disabled={!this.props.isEditable} type="text" className="form-control-sm record-card-element" defaultValue={moment(record.document_date).format("MM/DD/YY")}/>
                 </div>
                 <div className="form-group">
                   <label>Recording Date:</label>
-                  <input disabled={!this.props.isEditable} type="text" className="form-control-sm record-card-element" defaultValue={moment(record.recording_date).format("MM/DD/YY")}/>
+                  <input onChange={(e) => {
+                      this.props.editLocalRecord("recording_date", e.target.value)
+                    }} disabled={!this.props.isEditable} type="text" className="form-control-sm record-card-element" defaultValue={moment(record.recording_date).format("MM/DD/YY")}/>
                 </div>
                 {/* <div className="form-group">
                 <label>Document Type:</label>
@@ -55,14 +59,18 @@ class RecordView extends Component {
                 }
                 <div className="form-group">
                   <label>Document Type:</label>
-                  <textarea rows="1" cols="80" disabled={!this.props.isEditable
+                  <textarea onChange={(e) => {
+                      this.props.editLocalRecord("document_type", e.target.value)
+                    }} rows="1" cols="80" disabled={!this.props.isEditable
                       ? 'disabled'
                       : null} type="text" className="record-card-element" value={record.document_type}></textarea>
 
                 </div>
                 <div className="form-group">
                   <label>Title Company:</label>
-                  <input disabled={!this.props.isEditable} type="text" className="form-control-sm record-card-element" defaultValue={record.title_company}/>
+                  <input onChange={(e) => {
+                      this.props.editLocalRecord("title_company", e.target.value)
+                    }} disabled={!this.props.isEditable} type="text" className="form-control-sm record-card-element" defaultValue={record.title_company}/>
                 </div>
 
               </form>
@@ -93,7 +101,7 @@ class RecordView extends Component {
                       </tr>
                     </thead>
                     <tbody>
-                      {record.parties.map((party,i) => <EditPartiesList key={i} party={party} isEditable={this.props.isEditable}/>)}
+                      {record.parties.map((party,i) => <EditPartiesList editLocalParty={this.props.editLocalParty} key={i} index={i} party={party} isEditable={this.props.isEditable}/>)}
                     </tbody>
                   </table>
                   <a onClick={this.props.addEmptyParty} className={`btn btn-sm btn-outline-success ${ !this.props.isEditable
@@ -121,86 +129,126 @@ class RecordView extends Component {
                   <label>Legal Description:</label>
                   {/* <input disabled={!this.props.isEditable} type="text" className="form-control-sm record-card-element" defaultValue="EA 117 1 3 R1 (3777m2)"/> */}
 
-                  <textarea rows="2" cols="70" disabled={!this.props.isEditable
+{/* FIX LINK highlighting.  */}
+
+                  <a id="property-link" href={`/properties/${record.property_id}`}><textarea onChange={(e) => {
+                      this.props.editLocalRecord("legal_description", e.target.value)
+                    }} id="property-link" rows="2" cols="70" disabled={!this.props.isEditable
                       ? 'disabled'
-                      : null} type="text" className="record-card-element" value={record.legal_description}/>
+                      : null} type="text" className="record-card-element" value={record.legal_description}></textarea></a>
                 </div>
                 <div className="form-group">
                   <label>Street Address:</label>
                   {/* <input disabled={!this.props.isEditable} type="text" className="form-control-sm record-card-element" defaultValue="356 S. Marine Corps Dr., Tamuning, GU, 96913"/> */}
 
-                  <textarea rows="2" cols="70" disabled={!this.props.isEditable
+                  <textarea onChange={(e) => {
+                      this.props.editLocalRecord("street_address", e.target.value)
+                    }} rows="2" cols="70" disabled={!this.props.isEditable
                       ? 'disabled'
-                      : null} type="text" className="record-card-element" value={record.street_address}/>
+                      : null} type="text" className="record-card-element" value={record.street_address || ""}/>
                 </div>
 
                 <div className="form-group">
                   <label>Lot:</label>
-                  <input disabled={!this.props.isEditable} type="text" className="form-control-sm record-card-element" defaultValue={record.lot}/>
+                  <input onChange={(e) => {
+                      this.props.editLocalRecord("lot", e.target.value)
+                    }} disabled={!this.props.isEditable} type="text" className="form-control-sm record-card-element" defaultValue={record.lot}/>
                 </div>
                 <div className="form-group">
                   <label>Block:</label>
-                  <input disabled={!this.props.isEditable} type="text" className="form-control-sm record-card-element" defaultValue={record.block}/>
+                  <input onChange={(e) => {
+                      this.props.editLocalRecord("block", e.target.value)
+                    }} disabled={!this.props.isEditable} type="text" className="form-control-sm record-card-element" defaultValue={record.block}/>
                 </div>
                 <div className="form-group">
                   <label>Unit:</label>
-                  <input disabled={!this.props.isEditable} type="text" className="form-control-sm record-card-element" defaultValue={record.unit}/>
+                  <input onChange={(e) => {
+                      this.props.editLocalRecord("unit", e.target.value)
+                    }} disabled={!this.props.isEditable} type="text" className="form-control-sm record-card-element" defaultValue={record.unit}/>
                 </div>
                 <div className="form-group">
                   <label>Area:</label>
-                  <input disabled={!this.props.isEditable} type="text" className="form-control-sm record-card-element" defaultValue={record.area}/>
+                  <input onChange={(e) => {
+                      this.props.editLocalRecord("area", e.target.value)
+                    }} disabled={!this.props.isEditable} type="text" className="form-control-sm record-card-element" defaultValue={record.area}/>
                 </div>
                 <div className="form-group">
                   <label>Phase:</label>
-                  <input disabled={!this.props.isEditable} type="text" className="form-control-sm record-card-element" defaultValue={record.phase}/>
+                  <input onChange={(e) => {
+                      this.props.editLocalRecord("phase", e.target.value)
+                    }} disabled={!this.props.isEditable} type="text" className="form-control-sm record-card-element" defaultValue={record.phase}/>
                 </div>
                 <div className="form-group">
                   <label>Tract:</label>
-                  <input disabled={!this.props.isEditable} type="text" className="form-control-sm record-card-element" defaultValue={record.tract}/>
+                  <input onChange={(e) => {
+                      this.props.editLocalRecord("tract", e.target.value)
+                    }} disabled={!this.props.isEditable} type="text" className="form-control-sm record-card-element" defaultValue={record.tract}/>
                 </div>
                 <div className="form-group">
                   <label>Increment:</label>
-                  <input disabled={!this.props.isEditable} type="text" className="form-control-sm record-card-element" defaultValue={record.increment}/>
+                  <input onChange={(e) => {
+                      this.props.editLocalRecord("increment", e.target.value)
+                    }} disabled={!this.props.isEditable} type="text" className="form-control-sm record-card-element" defaultValue={record.increment}/>
                 </div>
                 <div className="form-group">
                   <label>Square Footage:</label>
-                  <input disabled={!this.props.isEditable} type="text" className="form-control-sm record-card-element" defaultValue={record.square_footage}/>
+                  <input onChange={(e) => {
+                      this.props.editLocalRecord("square_footage", e.target.value)
+                    }} disabled={!this.props.isEditable} type="text" className="form-control-sm record-card-element" defaultValue={record.square_footage}/>
                 </div>
                 <div className="form-group">
                   <label>Building Square Footage:</label>
-                  <input disabled={!this.props.isEditable} type="text" className="form-control-sm record-card-element" defaultValue={record.building_square_footage}/>
+                  <input onChange={(e) => {
+                      this.props.editLocalRecord("building_square_footage", e.target.value)
+                    }} disabled={!this.props.isEditable} type="text" className="form-control-sm record-card-element" defaultValue={record.building_square_footage}/>
                 </div>
                 <div className="form-group">
                   <label>Map Document:</label>
-                  <input disabled={!this.props.isEditable} type="text" className="form-control-sm record-card-element" defaultValue={record.map_document}/>
+                  <input onChange={(e) => {
+                      this.props.editLocalRecord("map_document", e.target.value)
+                    }} disabled={!this.props.isEditable} type="text" className="form-control-sm record-card-element" defaultValue={record.map_document}/>
                 </div>
                 <div className="form-group">
                   <label>Building Type:</label>
-                  <input disabled={!this.props.isEditable} type="text" className="form-control-sm record-card-element" defaultValue={record.building_type}/>
+                  <input onChange={(e) => {
+                      this.props.editLocalRecord("building_type", e.target.value)
+                    }} disabled={!this.props.isEditable} type="text" className="form-control-sm record-card-element" defaultValue={record.building_type}/>
                 </div>
                 <div className="form-group">
                   <label>Year Built:</label>
-                  <input disabled={!this.props.isEditable} type="text" className="form-control-sm record-card-element" defaultValue={record.year_built}/>
+                  <input onChange={(e) => {
+                      this.props.editLocalRecord("year_built", e.target.value)
+                    }} disabled={!this.props.isEditable} type="text" className="form-control-sm record-card-element" defaultValue={record.year_built}/>
                 </div>
                 <div className="form-group">
                   <label>Type of Construction:</label>
-                  <input disabled={!this.props.isEditable} type="text" className="form-control-sm record-card-element" defaultValue={record.type_of_construction}/>
+                  <input onChange={(e) => {
+                      this.props.editLocalRecord("type_of_construction", e.target.value)
+                    }} disabled={!this.props.isEditable} type="text" className="form-control-sm record-card-element" defaultValue={record.type_of_construction}/>
                 </div>
                 <div className="form-group">
                   <label>Building Condition:</label>
-                  <input disabled={!this.props.isEditable} type="text" className="form-control-sm record-card-element" defaultValue={record.building_condition}/>
+                  <input onChange={(e) => {
+                      this.props.editLocalRecord("building_condition", e.target.value)
+                    }} disabled={!this.props.isEditable} type="text" className="form-control-sm record-card-element" defaultValue={record.building_condition}/>
                 </div>
                 <div className="form-group">
                   <label>Municipality/Village:</label>
-                  <input disabled={!this.props.isEditable} type="text" className="form-control-sm record-card-element" defaultValue={record.municipality}/>
+                  <input onChange={(e) => {
+                      this.props.editLocalRecord("municipality", e.target.value)
+                    }} disabled={!this.props.isEditable} type="text" className="form-control-sm record-card-element" defaultValue={record.municipality}/>
                 </div>
                 <div className="form-group">
                   <label>Condominium:</label>
-                  <input disabled={!this.props.isEditable} type="text" className="form-control-sm record-card-element" defaultValue={record.condominium}/>
+                  <input onChange={(e) => {
+                      this.props.editLocalRecord("condominium", e.target.value)
+                    }} disabled={!this.props.isEditable} type="text" className="form-control-sm record-card-element" defaultValue={record.condominium}/>
                 </div>
                 <div className="form-group">
                   <label>Island:</label>
-                  <input disabled={!this.props.isEditable} type="text" className="form-control-sm record-card-element" defaultValue={record.island}/>
+                  <input onChange={(e) => {
+                      this.props.editLocalRecord("island", e.target.value)
+                    }} disabled={!this.props.isEditable} type="text" className="form-control-sm record-card-element" defaultValue={record.island}/>
                 </div>
 
               </form>
@@ -222,24 +270,34 @@ class RecordView extends Component {
               <form className="form record-card-form p-2 property-details">
                 <div className="form-group">
                   <label>Amount $:</label>
-                  <input disabled={!this.props.isEditable} type="text" className="form-control-sm record-card-element" defaultValue={record.amount}/>
+                  <input onChange={(e) => {
+                      this.props.editLocalRecord("amount", e.target.value)
+                    }} disabled={!this.props.isEditable} type="text" className="form-control-sm record-card-element" defaultValue={record.amount}/>
                 </div>
                 <div className="form-group">
                   <label>Recording Fees$:</label>
-                  <input disabled={!this.props.isEditable} type="text" className="form-control-sm record-card-element" defaultValue={record.recording_fees}/>
+                  <input onChange={(e) => {
+                      this.props.editLocalRecord("recording_fees", e.target.value)
+                    }} disabled={!this.props.isEditable} type="text" className="form-control-sm record-card-element" defaultValue={record.recording_fees}/>
                 </div>
                 <div className="form-group">
                   <label>Land Tax $:</label>
-                  <input disabled={!this.props.isEditable} type="text" className="form-control-sm record-card-element" defaultValue={record.land_tax}/>
+                  <input onChange={(e) => {
+                      this.props.editLocalRecord("land_tax", e.target.value)
+                    }} disabled={!this.props.isEditable} type="text" className="form-control-sm record-card-element" defaultValue={record.land_tax}/>
                 </div>
                 <div className="form-group">
                   <label>Land Appraised Value $:</label>
-                  <input disabled={!this.props.isEditable} type="text" className="form-control-sm record-card-element" defaultValue={record.land_appraised_value}/>
+                  <input onChange={(e) => {
+                      this.props.editLocalRecord("land_appraised_value", e.target.value)
+                    }} disabled={!this.props.isEditable} type="text" className="form-control-sm record-card-element" defaultValue={record.land_appraised_value}/>
                 </div>
 
                 <div className="form-group">
                   <label>Building Appraised Value $:</label>
-                  <input disabled={!this.props.isEditable} type="text" className="form-control-sm record-card-element" defaultValue={record.building_appraised_value}/>
+                  <input onChange={(e) => {
+                      this.props.editLocalRecord("building_appraised_value", e.target.value)
+                    }} disabled={!this.props.isEditable} type="text" className="form-control-sm record-card-element" defaultValue={record.building_appraised_value}/>
                 </div>
 
               </form>
@@ -261,7 +319,9 @@ class RecordView extends Component {
               <form className="form record-card-form p-2 property-details">
                 <div className="form-group">
                   <label>Remarks / Comments:</label>
-                  <textarea rows="16" cols="120" disabled={!this.props.isEditable
+                  <textarea onChange={(e) => {
+                      this.props.editLocalRecord("remarks", e.target.value)
+                    }} rows="16" cols="120" disabled={!this.props.isEditable
                       ? 'disabled'
                       : null} type="text" className="record-card-element" value={record.remarks}></textarea>
                 </div>
@@ -287,6 +347,7 @@ const mapDispatchToProps = (dispatch) => bindActionCreators({
   getOneRecord,
   editLocalRecord,
   setIsEditable,
-  addEmptyParty
+  addEmptyParty,
+  editLocalParty
 }, dispatch)
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(RecordView))

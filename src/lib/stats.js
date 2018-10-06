@@ -3,7 +3,7 @@ const BASE_URL = `http://localhost:5000`
 
 async function getStats() {
   try {
-    return axios(`${BASE_URL}/api/stats/`, {
+    return axios(`${BASE_URL}/api/stats/breakdown`, {
       headers: {
         authorization: `Bearer ${localStorage.getItem('c4d')}`
       },
