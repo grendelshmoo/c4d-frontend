@@ -1,6 +1,6 @@
 import axios from 'axios'
-// const BASE_URL = `http://localhost:5000`
-const BASE_URL = `http://titlebase-api.herokuapp.com`
+const BASE_URL = `http://localhost:5000`
+// const BASE_URL = `http://titlebase-api.herokuapp.com`
 
 async function keyWord(fulltext) {
   // event.preventDefault()
@@ -19,7 +19,25 @@ async function keyWord(fulltext) {
 
 }
 
+async function propertySearch(property) {
+  // event.preventDefault()
+  try {
+    console.log('IN LIB:', property)
+    return axios(`${BASE_URL}/api/properties/search?legal=${property}`, {
+      headers: {
+        authorization: `Bearer ${localStorage.getItem('c4d')}`
+      },
+      method: 'GET'
+    })
+  } catch (e) {
+    console.error(e.response)
+    return false
+  }
+
+}
 
 
 
-export default { keyWord }
+
+
+export default { keyWord, propertySearch }

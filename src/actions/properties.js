@@ -1,6 +1,16 @@
 import model from '../lib/properties'
 import {getLocationData} from '../actions/maps'
+import search from '../lib/search'
 // import {setIsNotEditable} from '../actions/auth'
+
+export const PROPERTY_SEARCH = 'PROPERTY_SEARCH'
+export const propertySearch = (property) => {
+  return async (dispatch) => {
+    const response = await search.propertySearch(property)
+    console.log("SEARCH RESPONSE: ", response );
+    return dispatch({type: PROPERTY_SEARCH, payload: response})
+  }
+}
 
 export const ADD_PROPERTY = 'ADD_PROPERTY'
 export const addProperty = (property) => {
