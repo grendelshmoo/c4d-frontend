@@ -15,4 +15,32 @@ async function getStats() {
   }
 }
 
-export default {getStats}
+async function getGraph1() {
+  try {
+    return axios(`${BASE_URL}/api/stats/graph1`, {
+      headers: {
+        authorization: `Bearer ${localStorage.getItem('c4d')}`
+      },
+      method: 'GET'
+    })
+  } catch (e) {
+    console.error(e.response)
+    return false
+  }
+}
+
+async function getGraph2() {
+  try {
+    return axios(`${BASE_URL}/api/stats/graph2`, {
+      headers: {
+        authorization: `Bearer ${localStorage.getItem('c4d')}`
+      },
+      method: 'GET'
+    })
+  } catch (e) {
+    console.error(e.response)
+    return false
+  }
+}
+
+export default {getStats, getGraph1, getGraph2}

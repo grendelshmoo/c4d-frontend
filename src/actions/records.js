@@ -55,8 +55,9 @@ export const addRecord = (record) => {
         source_db: record.source_db
       }
     })
-
+    console.log("RESPONSE", newRecord);
     let response = await model.addRecord(newRecord)
+
 
     let partyPromises = record.parties.map(person => {
       return contact.addContact(person).then((resp) => {
@@ -68,6 +69,7 @@ export const addRecord = (record) => {
       })
     })
     let partyList = await Promise.all(partyPromises)
+    console.log("PARTIES LIST:", partyList);
     await model.addParties(partyList)
 
     return dispatch({type: ADD_RECORD})
@@ -110,6 +112,18 @@ export const updateRecord = (recordId, record) => {
       // }
       //
       // let partiesUpdate = record.parties
+      //
+      // let partyPromises = record.partiesUpdate.map(person => {
+      //   return contact.addContact(person).then((resp) => {
+      //     return {
+      //       role: person.role,
+      //       contact_id: resp.data.id,
+      //       transaction_id: response.data.transaction_id
+      //     }
+      //   })
+      // })
+      // let partyList = await Promise.all(partyPromises)
+      // await model.addParties(partyList)
 
 
 

@@ -1,9 +1,9 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
-import {getStats} from '../actions/dashboard'
+import {getStats, getGraph1, getGraph2} from '../actions/dashboard'
 import moment from 'moment'
-import {LineChart, BarChart} from 'react-easy-chart';
+import {BarChart, AreaChart} from 'react-easy-chart';
 // import {Line} from 'react-chartjs'
 
 // var chartData = [{x: 10, y:20}, {x:15, y:3}, {x:30, y:7}]
@@ -23,6 +23,8 @@ class DashBoard extends Component {
 // }
 componentDidMount = () => {
   this.props.getStats()
+  this.props.getGraph1()
+  this.props.getGraph2()
 }
   render() {
     return (
@@ -62,44 +64,33 @@ componentDidMount = () => {
         <div className="col col-md-auto">
 
           <h5> Records by Date </h5>
-          <LineChart
-              xType={'time'}
+          <AreaChart
+              xType={'text'}
+              // yType={''}
+              // xDomainRange={[0, 4]}
+              yDomainRange={[0, 4]}
               axes
               grid
               verticalGrid
+              areaColors={['purple']}
+              axisLabels={{x: 'Date', y: 'Records'}}
               interpolate={'cardinal'}
               width={850}
               height={350}
-              data={[
-                [
-                  { x: '1-Jan-15', y: 20 },
-                  { x: '1-Feb-15', y: 10 },
-                  { x: '1-Mar-15', y: 33 },
-                  { x: '1-Apr-15', y: 45 },
-                  { x: '1-May-15', y: 15 }
-                ], [
-                  { x: '1-Jan-15', y: 10 },
-                  { x: '1-Feb-15', y: 15 },
-                  { x: '1-Mar-15', y: 13 },
-                  { x: '1-Apr-15', y: 15 },
-                  { x: '1-May-15', y: 10 }
-                ]
-              ]}
+              data={[this.props.recordsByDate]}
             />
             <h5> Records by Municipality </h5>
             <BarChart
-              axisLabels={{x: 'My x Axis', y: 'My y Axis'}}
+              axisLabels={{x: 'Municipality', y: 'Records'}}
+              xType={'text'}
+            
+              grid
               axes
               height={350}
               width={850}
               colorBars
               barWidth={40}
-              xType={'time'}
-              data={[
-                { x: '1-Jan-15', y: 20 },
-                { x: '2-Jan-15', y: 10 },
-                { x: '3-Jan-15', y: 33 }
-              ]}
+              data={this.props.recordsByMuni}
             />
 
 
@@ -111,6 +102,6 @@ componentDidMount = () => {
   )
   }
 }
-const mapStateToProps = ({dashboard}) => ({stats: dashboard.statsResults})
-const mapDispatchToProps = (dispatch) => bindActionCreators({getStats}, dispatch)
+const mapStateToProps = ({dashboard}) => ({stats: dashboard.statsResults, recordsByDate: dashboard.recordsByDate, recordsByMuni: dashboard.recordsByMuni})
+const mapDispatchToProps = (dispatch) => bindActionCreators({getStats, getGraph1, getGraph2}, dispatch)
 export default connect(mapStateToProps, mapDispatchToProps)(DashBoard)
