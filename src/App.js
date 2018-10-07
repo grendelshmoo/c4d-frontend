@@ -39,7 +39,7 @@ const App = ({isLoggedIn, verifyLogin}) => {
         <Route exact={true} path="/login" render={({location}) => {
             const previous = location.state && location.state.from.pathname
             if (isLoggedIn)
-              return <Redirect to={previous || "/records"}/>
+              return <Redirect to={previous || "/dashboard"}/>
             return <Login/>
           }}/>
         <Redirect to="/login"/>
