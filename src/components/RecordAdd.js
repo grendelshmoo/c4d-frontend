@@ -121,7 +121,7 @@ class RecordAdd extends Component {
 
                   <textarea onChange={(e) => {
                       this.props.editLocalRecord("legal_description", e.target.value)
-                    }} id="property-link" rows="2" cols="70" type="text" className="record-card-element"></textarea>
+                    }} rows="2" cols="70" type="text" className="record-card-element"></textarea>
                 </div>
                 <div className="form-group">
                   <label>Street Address:</label>

@@ -251,7 +251,7 @@ textarea {
   outline-width: thin;
 }
 
-#property-link {
+#property-link[disabled] {
   color: blue;
   font-weight: 400;
   font-style: bold;
