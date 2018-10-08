@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
 import {getStats, getGraph1, getGraph2} from '../actions/dashboard'
 import moment from 'moment'
+import {Link} from 'react-router-dom'
 import {BarChart, AreaChart} from 'react-easy-chart';
 // import {Line} from 'react-chartjs'
 
@@ -48,9 +49,9 @@ componentDidMount = () => {
         <div className="col-5 m-3 p-3">
           <h5> Quick Links </h5>
           <ul className="list-group d-flex list-unstyled m-3">
-            <a role="button" href="/records/add" className="btn btn-sm btn-primary btn-block text-light">Add Record</a>
-            <a role="button" href="/properties/add" className="btn btn-sm btn-secondary btn-block text-light">Add Property</a>
-            <a role="button" href="/contacts/add" className="btn btn-sm btn-warning btn-block text-light">Add Contact</a>
+            <Link role="button" to="/records/add" className="btn btn-sm btn-primary btn-block text-light">Add Record</Link>
+            <Link role="button" to="/properties/add" className="btn btn-sm btn-secondary btn-block text-light">Add Property</Link>
+            <Link role="button" to="/contacts/add" className="btn btn-sm btn-warning btn-block text-light">Add Contact</Link>
 
           </ul>
 
@@ -83,7 +84,7 @@ componentDidMount = () => {
             <BarChart
               axisLabels={{x: 'Municipality', y: 'Records'}}
               xType={'text'}
-            
+
               grid
               axes
               height={350}
