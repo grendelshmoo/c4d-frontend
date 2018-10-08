@@ -32,6 +32,7 @@ export const ADD_RECORD = 'ADD_RECORD'
 export const addRecord = (record) => {
 
   return async (dispatch) => {
+    console.log("IN ACTION:", record);
     let newRecord = await properties.addProperty(record).then(resp => resp.data[0]).then((resp) => {
       return {
         property_id: resp.id,
@@ -55,9 +56,10 @@ export const addRecord = (record) => {
         source_db: record.source_db
       }
     })
-    console.log("RESPONSE", newRecord);
-    let response = await model.addRecord(newRecord)
 
+    console.log("Property Add Response:", newRecord);
+    let response = await model.addRecord(newRecord)
+    console.log("Record Add Response", response);
 
     let partyPromises = record.parties.map(person => {
       return contact.addContact(person).then((resp) => {
@@ -68,9 +70,11 @@ export const addRecord = (record) => {
         }
       })
     })
+
     let partyList = await Promise.all(partyPromises)
     console.log("PARTIES LIST:", partyList);
-    await model.addParties(partyList)
+    const partyResponse = await model.addParties(partyList)
+    console.log("Add Parties Response:", partyResponse )
 
     return dispatch({type: ADD_RECORD})
   }
@@ -170,7 +174,6 @@ export const removeParty = (party) => {
 export const EDIT_LOCAL_PARTY = 'EDIT_LOCAL_PARTY'
 export const editLocalParty = (i, recordKey, recordValue) => {
   return(dispatch, getState) => {
-    console.log("STATE:", getState());
     const editParty = getState().records.recordListing.parties[i]
     // editParty[recordKey] = recordValue
     const updatedParty = {

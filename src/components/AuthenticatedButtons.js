@@ -26,7 +26,7 @@ let path = ""
         </a>
       </li>
       <li className={`nav-item ${path === "properties" ? "active" : ''}`}>
-        <a className="nav-link" href="/properties">Properties</a>
+        <Link className="nav-link" to={'/properties'} Properties </Link>
       </li>
       {/* <li className="nav-item">
           <a className="nav-link" href="">Add</a>
