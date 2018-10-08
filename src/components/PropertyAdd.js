@@ -2,6 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
 import {editLocalProperty, addProperty} from '../actions/properties'
+import {Link} from 'react-router-dom'
 
 const PropertyAdd = ({editLocalProperty, addProperty, propertyListing}) => {
 
@@ -136,7 +137,7 @@ const PropertyAdd = ({editLocalProperty, addProperty, propertyListing}) => {
                   editLocalProperty("island", e.target.value)
                 }} type="text" className="form-control-sm record-card-element" />
             </div>
-            <button onClick={() => {addProperty(propertyListing)}} className="btn btn-sm btn-block btn-warning m-2">Save</button>
+            <Link onClick={() => {addProperty(propertyListing)}} role="button" to="/properties" className="btn btn-sm btn-block btn-warning m-2">Save</Link>
           </form>
           {/* {
             this.props.isEditable

@@ -1,5 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
+import {Link} from 'react-router-dom'
 import {bindActionCreators} from 'redux'
 import {editLocalContact, addContact} from '../actions/contacts'
 
@@ -33,7 +34,7 @@ const ContactAdd = ({editLocalContact, addContact, contactListing}) => {
                     editLocalContact("mailing_address", e.target.value)
                   }}></textarea>
               </div>
-              <button onClick={() => {addContact(contactListing)}} className="btn btn-sm btn-block btn-warning m-2">Save</button>
+              <Link onClick={() => {addContact(contactListing)}} role="button" to="/contacts" className="btn btn-sm btn-block btn-warning m-2">Save</Link>
             </form>
           </small>
 

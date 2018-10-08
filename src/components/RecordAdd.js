@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
 import {getOneRecord, editLocalRecord, addEmptyParty, editLocalParty, addRecord} from '../actions/records'
-import {withRouter} from 'react-router-dom'
+import {withRouter, Link} from 'react-router-dom'
 import AddPartiesList from './AddPartiesList'
 
 class RecordAdd extends Component {
@@ -315,10 +315,10 @@ class RecordAdd extends Component {
 
         {/* need seperate buttons */}
         <div>
-          <a role="button" href="/records/add" onClick={(e) => {
+          <Link role="button" to="/records/" onClick={(e) => {
               this.props.addRecord(record)
-            }} className="btn btn-sm btn-warning m-2">Save</a>
-            <a className="btn btn-sm btn-secondary" href="/records/add" role="button">Cancel</a>
+            }} className="btn btn-sm btn-warning m-2">Save</Link>
+            <Link role="button" className="btn btn-sm btn-secondary" to="/records/" role="button">Cancel</Link>
         </div>
 
       </div>
