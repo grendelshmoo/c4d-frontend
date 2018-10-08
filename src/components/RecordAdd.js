@@ -318,7 +318,7 @@ class RecordAdd extends Component {
           <Link role="button" to="/records/" onClick={(e) => {
               this.props.addRecord(record)
             }} className="btn btn-sm btn-warning m-2">Save</Link>
-            <Link role="button" className="btn btn-sm btn-secondary" to="/records/" role="button">Cancel</Link>
+            <Link role="button" className="btn btn-sm btn-secondary" to="/records/">Cancel</Link>
         </div>
 
       </div>
