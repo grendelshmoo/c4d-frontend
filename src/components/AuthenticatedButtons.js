@@ -21,9 +21,7 @@ let path = ""
   return (<div className="collapse navbar-collapse" id="navbarText">
     <ul className="navbar-nav mr-auto">
       <li className={`nav-item ${path === "records" ? "active" : ''}`}>
-        <a className="nav-link" href="/records">Records
-
-        </a>
+        <Link className="nav-link" to={'/records'}> Records </Link>
       </li>
       <li className={`nav-item ${path === "properties" ? "active" : ''}`}>
         <Link className="nav-link" to={'/properties'}> Properties </Link>
@@ -33,7 +31,7 @@ let path = ""
         </li> */
       }
       <li className={`nav-item ${path === "contacts" ? "active" : ''}`}>
-        <a className="nav-link" href="/contacts">Contacts</a>
+        <Link className="nav-link" to={'/contacts'}> Contacts </Link>
       </li>
     </ul>
     <div className="text-light m-2 p-3">Craig F.</div>
@@ -43,9 +41,9 @@ let path = ""
           <i className="fas fa-user-cog"></i>
         </a>
         <div className="dropdown-menu dropdown-menu-right bg-dark m-2" aria-labelledby="dropdownMenuLink">
-          <a className="dropdown-item bg-dark" href="">Preferences...</a>
+          <Link className="dropdown-item bg-dark" to="">Preferences...</Link>
           <div className="dropdown-divider"></div>
-          <a onClick={logOut} className="dropdown-item bg-dark" href="">Logout</a>
+          <Link onClick={logOut} className="dropdown-item bg-dark" to="">Logout</Link>
         </div>
       </div>
     </span>
