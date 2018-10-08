@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import {Link} from 'react-router-dom'
 import ContactList from './ContactList'
 import axios from 'axios'
 const BASE_URL = `http://localhost:5000`
@@ -35,7 +36,7 @@ class ContactSearch extends Component {
           <form onSubmit={null} className="form-inline md-form form-sm m-2 p-2">
             <i className="fa fa-search" aria-hidden="true"></i>
             <input id="searchfield" className="form-control form-control-sm ml-3 w-75" type="text" placeholder="Search" aria-label="Search" name="keyword-search"></input>
-            <a className="btn btn-sm btn-outline-danger m-3" href="/contacts/add" role="button">Add Contact</a>
+            <Link className="btn btn-sm btn-outline-danger m-3" to="/contacts/add" role="button">Add Contact</Link>
           </form>
 
         </div>

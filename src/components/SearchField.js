@@ -2,6 +2,7 @@ import React from 'react'
 import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
 import {keywordSearch} from '../actions/records'
+import {Link} from 'react-router-dom'
 // import DatePicker from 'react-datepicker'
 // import 'react-datepicker/dist/react-datepicker.css'
 
@@ -39,7 +40,7 @@ const SearchField = ({keywordSearch}) => {
         <i className="fa fa-search" aria-hidden="true"></i>
         <input id="searchfield" className="form-control form-control-sm ml-3 w-75" type="text" placeholder="Search" aria-label="Search" name="keyword-search"></input>
       </form>
-      <a className="btn btn-sm btn-outline-danger m-3" href="/records/add" role="button">Add Record</a>
+      <Link className="btn btn-sm btn-outline-danger m-3" to="/records/add" role="button">Add Record</Link>
     </div>
     <div className="col-7 bg-dark text-light p-3">
 
