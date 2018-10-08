@@ -17,7 +17,7 @@ const ResultsList = ({searchResults, activeRecord}) => {
       <td>{moment(record.recording_date).format("MM/DD/YY")}</td>
       <td>{record.document_type}</td>
       <td>{record.parties.map((party, i) => <PartiesList key={i} party={party}/>)}</td>
-      <td>{record.legal_description}</td>
+      <td><Link to={`/properties/${record.property_id}`}>{record.legal_description}</Link></td>
     </tr>)
   })
 
