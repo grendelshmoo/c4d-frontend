@@ -20,17 +20,17 @@ let path = ""
   }
   return (<div className="collapse navbar-collapse" id="navbarText">
     <ul className="navbar-nav mr-auto">
-      <li className={`nav-item ${path === "records" ? "active" : ''}`}>
+      <li className={`nav-item `}>
         <Link className="nav-link" to={'/records'}> Records </Link>
       </li>
-      <li className={`nav-item ${path === "properties" ? "active" : ''}`}>
+      <li className={`nav-item `}>
         <Link className="nav-link" to={'/properties'}> Properties </Link>
       </li>
       {/* <li className="nav-item">
           <a className="nav-link" href="">Add</a>
         </li> */
       }
-      <li className={`nav-item ${path === "contacts" ? "active" : ''}`}>
+      <li className={`nav-item `}>
         <Link className="nav-link" to={'/contacts'}> Contacts </Link>
       </li>
     </ul>
