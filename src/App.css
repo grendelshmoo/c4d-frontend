@@ -4,6 +4,23 @@ body {
   font-family: sans-serif;
 }
 
+#login-page {
+background-image: url("/images/cityscape-grayscale-background.jpg");
+/* Set rules to fill background */
+min-height: 100%;
+min-width: 100%;
+
+z-index: -1;
+/* Set up proportionate scaling */
+width: 100%;
+height: auto;
+
+/* Set up positioning */
+position: fixed;
+top: 20;
+left: 0;
+}
+
 .navbar {
   height: 50px;
 }

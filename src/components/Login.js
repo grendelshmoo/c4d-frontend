@@ -7,7 +7,8 @@ import {logIn} from '../actions/auth'
 
 const Login = ({logIn}) => {
 
-  return (<div className="container p-4 m-2 mx-auto">
+  return (
+  <div id="login-page" className="container p-4 mx-auto">
     <div className="row">
       <div className="col">
         <div className="card border-dark mb-3 mx-auto">

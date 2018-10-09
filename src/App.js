@@ -19,8 +19,10 @@ import ContactAdd from './components/ContactAdd'
 import {connect} from 'react-redux'
 
 
+
 const App = ({isLoggedIn, verifyLogin}) => {
-  return (<main>
+  return (
+    <main>
     <NavBar/>
     <section className="container">
       <Switch>
