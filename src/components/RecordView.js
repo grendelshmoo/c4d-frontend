@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
 import {getOneRecord, editLocalRecord, addEmptyParty, editLocalParty, removeParty} from '../actions/records'
 import {setIsEditable} from '../actions/auth'
-import {withRouter} from 'react-router-dom'
+import {withRouter, Link} from 'react-router-dom'
 import moment from 'moment'
 // import RecordPartiesList from './RecordPartiesList'
 import EditPartiesList from './EditPartiesList'
@@ -131,11 +131,11 @@ class RecordView extends Component {
 
 {/* FIX LINK highlighting.  */}
 
-                  <a id="property-link" href={`/properties/${record.property_id}`}><textarea onChange={(e) => {
+                  <Link id="property-link" to={`/properties/${record.property_id}`}><textarea onChange={(e) => {
                       this.props.editLocalRecord("legal_description", e.target.value)
                     }} id="property-link" rows="2" cols="70" disabled={!this.props.isEditable
                       ? 'disabled'
-                      : null} type="text" className="record-card-element" value={record.legal_description}></textarea></a>
+                      : null} type="text" className="record-card-element" value={record.legal_description}></textarea></Link>
                 </div>
                 <div className="form-group">
                   <label>Street Address:</label>
