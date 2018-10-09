@@ -46,7 +46,7 @@ class PropertyMapView extends Component {
     if (this.props.currentMapView === "plat") {
       if (this.props.loading) return <div className="container d-flex justify-content-center m-3 p-3"><Spinner name='line-scale' color='#D8212C' /></div>
 
-      currentMap = <img className="plat-map-image" alt={property.map_document} src={`http://localhost:3000/images/${property.map_document}.jpg`}></img>
+      currentMap = <img className="plat-map-image" alt={property.map_document} src={`/images/${property.map_document}.jpg`}></img>
     }
 
     if (this.props.currentMapView === "google") {
@@ -64,7 +64,7 @@ class PropertyMapView extends Component {
             this.props.setCurrentMapviewPlat()
           }} type="button" className={`btn btn-sm btn-secondary ${this.props.currentMapView === "plat"
             ? "active"
-            : ""}`}>Plat</button>
+            : ""}`}>Plat/Parcel</button>
         <button onClick={() => {
             this.props.setCurrentMapviewGoogle()
           }} type="button" className={`btn btn-sm btn-secondary ${this.props.currentMapView === "google"
