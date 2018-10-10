@@ -30,6 +30,7 @@ const Login = ({logIn}) => {
                   className="form-control"
                   name="email"
                   id="email"
+                  defaultValue="craig@fell.org"
                   aria-describedby="emailHelp"
                   placeholder="Enter Email*">
                   </input>
@@ -42,6 +43,7 @@ const Login = ({logIn}) => {
                   // onChange={ this.onChange }
                   // value={ this.state.password }
                   type="password"
+                  defaultValue="password"
                   className="form-control"
                   name="password"
                   id="login-password"
